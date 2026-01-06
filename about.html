@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Saadhya Global School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#8B0A1A',
+                        maroonDark: '#6F0814',
+                        gold: '#F5C542',
+                        goldDark: '#D4A017',
+                        goldLight: '#FFE8A3',
+                        cream: '#FFF6DA',
+                        charcoal: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F5C542;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 10, 26, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Contact Bar -->
+    <div class="bg-maroonDark text-white py-2 hidden md:block">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center text-sm">
+                <div class="flex space-x-6">
+                    <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-phone"></i>
+                        <span>08008344244</span>
+                    </a>
+                    <a href="mailto:info@saadhyaglobal.com" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@saadhyaglobal.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-gold"></i>
+                    <span>Mon-Sat: 9 AM – 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Saadhya Global School Logo" class="h-14 w-14 object-contain">
+                    <div class="text-white">
+                        <h1 class="text-xl md:text-2xl font-bold">Saadhya Global School</h1>
+                        <p class="text-xs md:text-sm text-goldLight">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex space-x-8 items-center">
+                    <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
+                    <li><a href="about.html" class="nav-link text-white font-medium hover:text-gold">About Us</a></li>
+                    <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-maroonDark shadow-2xl md:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="space-y-6 mt-12">
+                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
+            <p class="text-xl text-goldLight">Learn more about our journey, mission, and values</p>
+        </div>
+    </section>
+
+    <!-- School Overview -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Welcome to Saadhya Global School</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                </div>
+                
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        Saadhya Global School is a premier educational institution dedicated to nurturing young minds and shaping future leaders. Established with a vision to provide world-class education rooted in Indian values and traditions, we have been serving our community with excellence and dedication.
+                    </p>
+                    
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        Our school stands as a beacon of quality education, combining traditional teaching methods with modern pedagogical approaches. We believe that education is not merely about academic achievement but about developing well-rounded individuals who are confident, compassionate, and capable of making positive contributions to society.
+                    </p>
+                    
+                    <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                        At Saadhya Global School, we provide a nurturing environment where students are encouraged to explore their potential, develop critical thinking skills, and embrace lifelong learning. Our state-of-the-art infrastructure, experienced faculty, and comprehensive curriculum ensure that every student receives the best possible education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-16 md:py-24 bg-cream">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Mission -->
+                    <div class="bg-white p-10 rounded-2xl shadow-xl card-hover border-t-4 border-maroon">
+                        <div class="w-16 h-16 bg-maroon rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-bullseye text-3xl text-gold"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-maroon mb-6">Our Mission</h3>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                            To provide a holistic education that nurtures intellectual curiosity, fosters creativity, and instills strong moral values in our students.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span class="text-gray-700">Deliver excellence in academics and co-curricular activities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span class="text-gray-700">Foster critical thinking and problem-solving skills</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mr-3 mt-1"></i>
+                                <span class="text-gray-700">Cultivate respect for diversity and cultural heritage</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Vision -->
+                    <div class="bg-white p-10 rounded-2xl shadow-xl card-hover border-t-4 border-gold">
+                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-eye text-3xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-maroon mb-6">Our Vision</h3>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                            To be recognized as a leading educational institution that shapes responsible global citizens who contribute positively to society.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-maroon mr-3 mt-1"></i>
+                                <span class="text-gray-700">Create future-ready leaders with strong character</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-maroon mr-3 mt-1"></i>
+                                <span class="text-gray-700">Build a community of lifelong learners</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-maroon mr-3 mt-1"></i>
+                                <span class="text-gray-700">Inspire innovation and entrepreneurial spirit</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Our Core Values</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    The principles that guide everything we do at Saadhya Global School
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-star text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-maroon mb-2">Excellence</h4>
+                    <p class="text-gray-600">Striving for the highest standards in all endeavors</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-heart text-3xl text-maroon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-maroon mb-2">Integrity</h4>
+                    <p class="text-gray-600">Building character through honesty and ethics</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-users text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-maroon mb-2">Respect</h4>
+                    <p class="text-gray-600">Valuing diversity and treating all with dignity</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-lightbulb text-3xl text-maroon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-maroon mb-2">Innovation</h4>
+                    <p class="text-gray-600">Encouraging creativity and forward thinking</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-hands-helping text-3xl text-gold"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-maroon mb-2">Service</h4>
+                    <p class="text-gray-600">Contributing positively to community and society</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & History -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-maroon to-maroonDark text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
+                    <p class="text-goldLight text-lg">A legacy of excellence and continuous growth</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-gold border-opacity-30">
+                        <div class="text-5xl font-bold text-gold mb-2">500+</div>
+                        <p class="text-goldLight text-lg">Happy Students</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-gold border-opacity-30">
+                        <div class="text-5xl font-bold text-gold mb-2">50+</div>
+                        <p class="text-goldLight text-lg">Dedicated Faculty</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-gold border-opacity-30">
+                        <div class="text-5xl font-bold text-gold mb-2">95%</div>
+                        <p class="text-goldLight text-lg">Academic Excellence Rate</p>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-gold border-opacity-30">
+                        <div class="text-5xl font-bold text-gold mb-2">100%</div>
+                        <p class="text-goldLight text-lg">Parent Satisfaction</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-gold border-opacity-30">
+                    <h3 class="text-2xl font-bold mb-4 text-gold">Our Journey</h3>
+                    <p class="text-goldLight leading-relaxed">
+                        Saadhya Global School has been at the forefront of educational excellence, consistently producing outstanding results in academics, sports, and cultural activities. Our students have won numerous awards and recognition at district, state, and national levels. We continue to innovate and adapt to provide the best possible education for our students.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-goldLight">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Join Our Legacy of Excellence</h2>
+            <p class="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
+                Discover how Saadhya Global School can nurture your child's potential and prepare them for a successful future.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="admission.html" class="bg-maroon hover:bg-maroonDark text-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Apply Now
+                </a>
+                <a href="contact.html" class="bg-white hover:bg-gray-100 text-maroon border-2 border-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gold">Saadhya Global School</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Committed to excellence in education, nurturing young minds with values and innovation.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition">About Us</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-gold transition">Gallery</a></li>
+                        <li><a href="admission.html" class="text-gray-400 hover:text-gold transition">Admission</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2 text-gold"></i> 08008344244</li>
+                        <li><i class="fas fa-envelope mr-2 text-gold"></i> info@saadhyaglobal.com</li>
+                        <li><i class="fas fa-clock mr-2 text-gold"></i> Mon-Sat: 9 AM – 5 PM</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

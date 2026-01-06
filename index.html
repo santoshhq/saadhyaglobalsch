@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saadhya Global School - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#8B0A1A',
+                        maroonDark: '#6F0814',
+                        gold: '#F5C542',
+                        goldDark: '#D4A017',
+                        goldLight: '#FFE8A3',
+                        cream: '#FFF6DA',
+                        charcoal: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #8B0A1A 0%, #6F0814 100%);
+        }
+        
+        .hero-carousel {
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Panning animations */
+        .hero-slide:nth-child(1) img {
+            animation: panLeftToRight 20s ease-in-out infinite;
+        }
+        
+        .hero-slide:nth-child(2) img {
+            animation: panRightToLeft 20s ease-in-out infinite;
+        }
+        
+        @keyframes panLeftToRight {
+            0% {
+                transform: scale(1.2) translateX(-5%);
+            }
+            50% {
+                transform: scale(1.2) translateX(5%);
+            }
+            100% {
+                transform: scale(1.2) translateX(-5%);
+            }
+        }
+        
+        @keyframes panRightToLeft {
+            0% {
+                transform: scale(1.2) translateX(5%);
+            }
+            50% {
+                transform: scale(1.2) translateX(-5%);
+            }
+            100% {
+                transform: scale(1.2) translateX(5%);
+            }
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 10, 26, 0.5) 0%, rgba(111, 8, 20, 0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 10, 26, 0.2);
+        }
+        
+        .star-rating {
+            color: #F5C542;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F5C542;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Ensure images display properly */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .principal-image {
+            min-height: 400px;
+            object-fit: cover;
+        }
+        
+        .bus-image {
+            min-height: 300px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Contact Bar -->
+    <div class="bg-maroonDark text-white py-2 hidden md:block">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center text-sm">
+                <div class="flex space-x-6">
+                    <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-phone"></i>
+                        <span>08008344244</span>
+                    </a>
+                    <a href="mailto:info@saadhyaglobal.com" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@saadhyaglobal.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-gold"></i>
+                    <span>Mon-Sat: 9 AM – 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Saadhya Global School Logo" class="h-14 w-14 object-contain">
+                    <div class="text-white">
+                        <h1 class="text-xl md:text-2xl font-bold">Saadhya Global School</h1>
+                        <p class="text-xs md:text-sm text-goldLight">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex space-x-8 items-center">
+                    <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
+                    <li><a href="about.html" class="nav-link text-white font-medium hover:text-gold">About Us</a></li>
+                    <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-maroonDark shadow-2xl md:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="space-y-6 mt-12">
+                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-carousel text-white">
+        <!-- Slide 1 -->
+        <div class="hero-slide active">
+            <img src="gallery/unnamed.jpg" alt="School Campus" loading="eager">
+        </div>
+        <!-- Slide 2 -->
+        <div class="hero-slide">
+            <img src="gallery/APRy3c-p801t3elB4p2Ckt8cyI6cYB7h.png" alt="School Activity" loading="eager">
+        </div>
+        
+        <!-- Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="hero-content absolute inset-0 flex items-center justify-center">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Welcome to Saadhya Global School</h2>
+                    <p class="text-lg md:text-xl mb-8 text-goldLight leading-relaxed">Nurturing young minds with excellence, innovation, and traditional values. Where education meets inspiration.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-8 py-4 rounded-lg text-lg transition duration-300 shadow-lg">Apply Now</a>
+                        <a href="about.html" class="bg-transparent border-2 border-gold hover:bg-gold hover:text-maroon text-gold font-semibold px-8 py-4 rounded-lg text-lg transition duration-300">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Why Choose Saadhya Global School?</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">We provide a comprehensive educational experience that prepares students for success in the modern world</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-book-open text-3xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Academic Excellence</h3>
+                    <p class="text-gray-700 leading-relaxed">Comprehensive curriculum aligned with CBSE standards, focusing on conceptual learning and critical thinking skills</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-users text-3xl text-maroon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Experienced Faculty</h3>
+                    <p class="text-gray-700 leading-relaxed">Highly qualified and dedicated teachers who inspire and mentor students to reach their full potential</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-building text-3xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Modern Infrastructure</h3>
+                    <p class="text-gray-700 leading-relaxed">State-of-the-art facilities including smart classrooms, science labs, library, and sports complex</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-trophy text-3xl text-maroon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Holistic Development</h3>
+                    <p class="text-gray-700 leading-relaxed">Focus on sports, arts, music, and extracurricular activities for all-round personality development</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-shield-alt text-3xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Safe Environment</h3>
+                    <p class="text-gray-700 leading-relaxed">CCTV surveillance, trained security staff, and strict safety protocols ensure a secure learning space</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-leaf text-3xl text-maroon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-maroon mb-4">Value-Based Education</h3>
+                    <p class="text-gray-700 leading-relaxed">Integration of moral values, ethics, and cultural heritage with modern educational practices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-maroon to-maroonDark text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Stat 1 -->
+                    <div class="text-center">
+                        <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
+                            500+
+                        </div>
+                        <p class="text-goldLight text-lg">Students</p>
+                    </div>
+                    
+                    <!-- Stat 2 -->
+                    <div class="text-center">
+                        <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
+                            30+
+                        </div>
+                        <p class="text-goldLight text-lg">Teachers</p>
+                    </div>
+                    
+                    <!-- Stat 3 -->
+                    <div class="text-center">
+                        <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
+                            15+
+                        </div>
+                        <p class="text-goldLight text-lg">Years of Excellence</p>
+                    </div>
+                    
+                    <!-- Stat 4 -->
+                    <div class="text-center">
+                        <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
+                            98%
+                        </div>
+                        <p class="text-goldLight text-lg">Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Programs Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-cream to-goldLight">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Our Academic Programs</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Comprehensive learning from pre-primary to secondary education</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Program 1 -->
+                <div class="bg-gradient-to-br from-maroon to-maroonDark text-white p-8 rounded-xl shadow-xl card-hover">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-gold mb-2">LKG - UKG</div>
+                        <h3 class="text-xl font-bold mb-4">Pre-Primary</h3>
+                        <p class="text-goldLight leading-relaxed">Play-based learning with focus on foundational skills, social interaction, and creativity</p>
+                    </div>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="bg-gradient-to-br from-gold to-goldDark text-maroon p-8 rounded-xl shadow-xl card-hover">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-maroonDark mb-2">1 - 5</div>
+                        <h3 class="text-xl font-bold mb-4">Primary School</h3>
+                        <p class="text-maroonDark leading-relaxed">Building strong fundamentals in languages, mathematics, science, and environmental studies</p>
+                    </div>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="bg-gradient-to-br from-maroon to-maroonDark text-white p-8 rounded-xl shadow-xl card-hover">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-gold mb-2">6 - 8</div>
+                        <h3 class="text-xl font-bold mb-4">Middle School</h3>
+                        <p class="text-goldLight leading-relaxed">Enhanced curriculum with emphasis on analytical thinking and subject specialization</p>
+                    </div>
+                </div>
+                
+                <!-- Program 4 -->
+                <div class="bg-gradient-to-br from-gold to-goldDark text-maroon p-8 rounded-xl shadow-xl card-hover">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-maroonDark mb-2">9 - 10</div>
+                        <h3 class="text-xl font-bold mb-4">Secondary School</h3>
+                        <p class="text-maroonDark leading-relaxed">Board exam preparation with comprehensive guidance and career counseling</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Features -->
+            <div class="mt-16 max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <i class="fas fa-language text-4xl text-maroon mb-4"></i>
+                            <h4 class="text-lg font-bold text-maroon mb-2">Languages</h4>
+                            <p class="text-gray-600">English, Hindi, Telugu</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <i class="fas fa-laptop-code text-4xl text-maroon mb-4"></i>
+                            <h4 class="text-lg font-bold text-maroon mb-2">Technology</h4>
+                            <p class="text-gray-600">Computer Science & Coding</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <i class="fas fa-flask text-4xl text-maroon mb-4"></i>
+                            <h4 class="text-lg font-bold text-maroon mb-2">STEM Focus</h4>
+                            <p class="text-gray-600">Science, Math & Innovation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principal's Message -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Text Content -->
+        <div class="order-2 md:order-1">
+          <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">
+            Principal's Message
+          </h2>
+
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            At Saadhya Global School, we believe in shaping not just academic excellence,
+            but character, compassion, and confidence in every student. Our commitment
+            is to provide a nurturing environment where traditional values meet modern education.
+          </p>
+
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            We strive to empower our students with knowledge, skills, and ethics that
+            prepare them for the challenges of tomorrow while respecting the wisdom of our heritage.
+          </p>
+
+          <div class="border-l-4 border-gold pl-6 bg-cream p-4 rounded-r-lg">
+            <p class="text-maroon font-semibold italic text-lg">
+              "Education is not the filling of a pail, but the lighting of a fire."
+            </p>
+            <p class="text-gray-600 mt-2">— William Butler Yeats</p>
+          </div>
+
+          <div class="mt-6">
+            <p class="text-gray-700 font-semibold text-lg">With warm regards,</p>
+            <p class="text-maroon font-bold text-xl mt-2">Principal Name</p>
+            <p class="text-gray-600">Principal, Saadhya Global School</p>
+          </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="order-1 md:order-2 flex justify-center">
+          <div class="bg-cream p-4 rounded-2xl shadow-xl">
+            <img 
+              src="principle_image.jpg"
+              alt="Principal Name "
+              class="rounded-xl w-full max-w-sm object-cover"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   
+
+    <!-- Great Words / Inspirational Quotes -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-maroon mb-12">Words of Wisdom</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-gold">
+                    <i class="fas fa-quote-left text-3xl text-gold mb-4"></i>
+                    <p class="text-gray-700 text-lg italic mb-4">
+                        "The mind is not a vessel to be filled, but a fire to be kindled."
+                    </p>
+                    <p class="text-maroon font-semibold">- Plutarch</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-maroon">
+                    <i class="fas fa-quote-left text-3xl text-maroon mb-4"></i>
+                    <p class="text-gray-700 text-lg italic mb-4">
+                        "Education is the most powerful weapon which you can use to change the world."
+                    </p>
+                    <p class="text-maroon font-semibold">- Nelson Mandela</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-gold">
+                    <i class="fas fa-quote-left text-3xl text-gold mb-4"></i>
+                    <p class="text-gray-700 text-lg italic mb-4">
+                        "The beautiful thing about learning is that no one can take it away from you."
+                    </p>
+                    <p class="text-maroon font-semibold">- B.B. King</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Facility Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-cream to-goldLight">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="school_bus-removebg-preview.png" alt="School Bus Transport" class="bus-image w-full">
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Safe & Reliable Transport</h2>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            We understand the importance of safe and comfortable transportation for your child. Our fleet of modern, GPS-enabled buses ensures your child's safety from home to school and back.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-maroon text-lg">GPS Tracking</h4>
+                                    <p class="text-gray-600">Real-time location tracking for parent peace of mind</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-maroon text-lg">Trained Staff</h4>
+                                    <p class="text-gray-600">Experienced drivers and attendants on every route</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-maroon text-lg">Wide Coverage</h4>
+                                    <p class="text-gray-600">Multiple routes covering all major areas</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Reviews Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-maroon to-maroonDark text-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">What Parents Say</h2>
+            <p class="text-center text-goldLight mb-12 text-lg">Hear from our proud parent community</p>
+            
+            <!-- Carousel Container -->
+            <div class="relative max-w-7xl mx-auto">
+                <div id="reviewsCarousel" class="flex gap-8 transition-transform duration-500 ease-in-out">
+                    <!-- Review 1 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl">
+                        <div class="flex mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6 italic leading-relaxed">
+                            "Saadhya Global School has been a blessing for our family. The teachers are dedicated, and the curriculum perfectly balances academics with values. My daughter has grown tremendously!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-maroon font-bold text-xl mr-4">
+                                S
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-maroon">Sita Devi</h4>
+                                <p class="text-sm text-gray-500">Parent of Grade 5 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl">
+                        <div class="flex mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6 italic leading-relaxed">
+                            "The infrastructure, teaching methods, and overall environment at Saadhya Global School are outstanding. I'm confident my son is receiving the best education and care."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-maroon font-bold text-xl mr-4">
+                                R
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-maroon">Rama Krishna</h4>
+                                <p class="text-sm text-gray-500">Parent of Grade 8 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl">
+                        <div class="flex mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6 italic leading-relaxed">
+                            "As parents, we couldn't be happier with our decision. The personal attention each child receives and the focus on holistic development make this school truly special."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-maroon font-bold text-xl mr-4">
+                                A
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-maroon">Arjun Rao</h4>
+                                <p class="text-sm text-gray-500">Parent of Grade 3 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl">
+                        <div class="flex mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6 italic leading-relaxed">
+                            "The best decision we made for our children's education! The school's emphasis on both academics and character building has helped my kids excel in every aspect of life."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-maroon font-bold text-xl mr-4">
+                                L
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-maroon">Lakshmi Reddy</h4>
+                                <p class="text-sm text-gray-500">Parent of Grade 7 Student</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl">
+                        <div class="flex mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                        </div>
+                        <p class="text-gray-700 mb-6 italic leading-relaxed">
+                            "Excellent school with caring teachers and wonderful facilities. My daughter looks forward to going to school every day. The values they instill are priceless!"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-maroon font-bold text-xl mr-4">
+                                V
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-maroon">Vijay Kumar</h4>
+                                <p class="text-sm text-gray-500">Parent of Grade 2 Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus & Location Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Our Campus</h2>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            Located in the heart of Miyapur, our sprawling campus provides a perfect blend of modern facilities and green spaces, creating an ideal environment for learning and growth.
+                        </p>
+                        <div class="bg-cream p-6 rounded-xl mb-6">
+                            <div class="flex items-start mb-4">
+                                <i class="fas fa-map-marker-alt text-gold text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-maroon text-lg mb-2">Visit Us At:</h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        <strong>Plot No: 844</strong><br>
+                                        Lingampally, Mathrusree Nagar<br>
+                                        Miyapur, Telangana 500049
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                <span class="text-gray-700">Easily accessible from major areas of Hyderabad</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                <span class="text-gray-700">Well-connected by public transportation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                <span class="text-gray-700">Safe and secure neighborhood</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6">
+                            <a href="https://maps.app.goo.gl/bK7MwdkuAzfMHmKK6" target="_blank" class="bg-maroon hover:bg-maroonDark text-white font-semibold px-8 py-3 rounded-lg transition duration-300 inline-block">
+                                <i class="fas fa-directions mr-2"></i>Get Directions
+                            </a>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <img src="gallery/AF1QipMSt1eK24yujOE1bVN4LNKqbBlm.png" alt="Saadhya Global School Campus" class="rounded-2xl shadow-2xl w-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-goldLight">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Ready to Join Our Family?</h2>
+            <p class="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
+                Take the first step towards a brighter future for your child. Apply now and become part of the Saadhya Global School community.
+            </p>
+            <a href="admission.html" class="bg-maroon hover:bg-maroonDark text-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                Apply for Admission
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-gold">Saadhya Global School</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Committed to excellence in education, nurturing young minds with values and innovation.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition">About Us</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-gold transition">Gallery</a></li>
+                        <li><a href="admission.html" class="text-gray-400 hover:text-gold transition">Admission</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2 text-gold"></i> Plot No: 844, Lingampally<br><span class="ml-6">Mathrusree Nagar, Miyapur</span><br><span class="ml-6">Telangana 500049</span></li>
+                        <li><i class="fas fa-phone mr-2 text-gold"></i> 08008344244</li>
+                        <li><i class="fas fa-envelope mr-2 text-gold"></i> info@saadhyaglobal.com</li>
+                        <li><i class="fas fa-clock mr-2 text-gold"></i> Mon-Sat: 9 AM – 5 PM</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admission Popup Modal -->
+    <div id="admissionPopup" class="fixed inset-0 bg-black bg-opacity-70 z-[9999] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="closePopup" class="absolute top-4 right-4 text-gray-500 hover:text-maroon text-3xl font-bold z-10">
+                &times;
+            </button>
+            
+            <div class="bg-gradient-to-r from-maroon to-maroonDark text-white p-8 rounded-t-2xl">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">Quick Admission Inquiry</h2>
+                <p class="text-goldLight">Join Saadhya Global School - Where Excellence Meets Values</p>
+            </div>
+            
+            <div class="p-8">
+                <form id="popupAdmissionForm" class="space-y-5">
+                    <!-- Student Name -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Student Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="popupStudentName" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
+                            placeholder="Enter student's full name"
+                        >
+                    </div>
+                    
+                    <!-- Grade -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Grade <span class="text-red-500">*</span>
+                        </label>
+                        <select 
+                            name="popupGrade" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
+                        >
+                            <option value="">Select Grade</option>
+                            <option value="LKG">LKG</option>
+                            <option value="UKG">UKG</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                            <option value="Grade 4">Grade 4</option>
+                            <option value="Grade 5">Grade 5</option>
+                            <option value="Grade 6">Grade 6</option>
+                            <option value="Grade 7">Grade 7</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Parent Name -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Parent Name <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="popupParentName" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
+                            placeholder="Enter parent/guardian name"
+                        >
+                    </div>
+                    
+                    <!-- Mobile -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Mobile Number <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            name="popupMobile" 
+                            required
+                            pattern="[0-9]{10}"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
+                            placeholder="10-digit mobile number"
+                        >
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Email <span class="text-gray-500 text-sm">(Optional)</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            name="popupEmail"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
+                            placeholder="your.email@example.com"
+                        >
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button 
+                            type="submit"
+                            class="w-full bg-maroon hover:bg-maroonDark text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 shadow-lg"
+                        >
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Submit Inquiry
+                        </button>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div id="popupSuccessMessage" class="hidden mt-4 p-4 bg-green-100 border-2 border-green-500 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <div>
+                                <h4 class="text-green-700 font-bold">Inquiry Submitted!</h4>
+                                <p class="text-green-600 text-sm">We'll contact you shortly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="mt-6 text-center text-gray-600">
+                    <p class="text-sm">Or visit our <a href="admission.html" class="text-maroon font-semibold hover:text-gold">detailed admission page</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
