@@ -369,9 +369,10 @@
                     <!-- Stat 4 -->
                     <div class="text-center">
                         <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
-                            98%
+                            10+
                         </div>
-                        <p class="text-goldLight text-lg">Success Rate</p>
+                        <p class="text-goldLight text-lg">Awards & Achievements
+</p>
                     </div>
                 </div>
             </div>
@@ -383,10 +384,10 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Our Academic Programs</h2>
-                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Comprehensive learning from pre-primary to secondary education</p>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Comprehensive learning from pre-primary to middle school education</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Program 1 -->
                 <div class="bg-gradient-to-br from-maroon to-maroonDark text-white p-8 rounded-xl shadow-xl card-hover">
                     <div class="text-center">
@@ -408,18 +409,9 @@
                 <!-- Program 3 -->
                 <div class="bg-gradient-to-br from-maroon to-maroonDark text-white p-8 rounded-xl shadow-xl card-hover">
                     <div class="text-center">
-                        <div class="text-4xl font-bold text-gold mb-2">6 - 8</div>
+                        <div class="text-4xl font-bold text-gold mb-2">6 - 7</div>
                         <h3 class="text-xl font-bold mb-4">Middle School</h3>
                         <p class="text-goldLight leading-relaxed">Enhanced curriculum with emphasis on analytical thinking and subject specialization</p>
-                    </div>
-                </div>
-                
-                <!-- Program 4 -->
-                <div class="bg-gradient-to-br from-gold to-goldDark text-maroon p-8 rounded-xl shadow-xl card-hover">
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-maroonDark mb-2">9 - 10</div>
-                        <h3 class="text-xl font-bold mb-4">Secondary School</h3>
-                        <p class="text-maroonDark leading-relaxed">Board exam preparation with comprehensive guidance and career counseling</p>
                     </div>
                 </div>
             </div>
@@ -438,7 +430,7 @@
                         <div class="bg-white p-6 rounded-xl shadow-lg">
                             <i class="fas fa-laptop-code text-4xl text-maroon mb-4"></i>
                             <h4 class="text-lg font-bold text-maroon mb-2">Technology</h4>
-                            <p class="text-gray-600">Computer Science & Coding</p>
+                            <p class="text-gray-600">Computers, Digital Skills </p>
                         </div>
                     </div>
                     <div class="text-center">
@@ -878,6 +870,9 @@
                             <option value="Grade 5">Grade 5</option>
                             <option value="Grade 6">Grade 6</option>
                             <option value="Grade 7">Grade 7</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
                         </select>
                     </div>
                     
@@ -918,7 +913,6 @@
                         <input 
                             type="email" 
                             name="popupEmail"
-                            required
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none transition"
                             placeholder="your.email@example.com"
                         >
@@ -934,28 +928,22 @@
                             Submit Inquiry
                         </button>
                     </div>
+                    
+                    <!-- Success Message -->
+                    <div id="popupSuccessMessage" class="hidden mt-4 p-4 bg-green-100 border-2 border-green-500 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
+                            <div>
+                                <h4 class="text-green-700 font-bold">Inquiry Submitted!</h4>
+                                <p class="text-green-600 text-sm">We'll contact you shortly.</p>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 
                 <div class="mt-6 text-center text-gray-600">
                     <p class="text-sm">Or visit our <a href="admission.html" class="text-maroon font-semibold hover:text-gold">detailed admission page</a></p>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Success Popup Modal -->
-    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-70 z-[10000] hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center transform scale-95 transition-all duration-300 relative">
-            <button id="closeSuccessPopup" class="absolute top-4 right-4 text-gray-400 hover:text-maroon text-2xl font-bold transition">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="mb-6">
-                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-check text-green-500 text-4xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-maroon mb-3">Form Successfully Submitted!</h3>
-                <p class="text-gray-600 mb-4">Thank you for your inquiry. We'll contact you shortly.</p>
-                <p class="text-sm text-gray-400 italic">This popup will close automatically in 5 seconds...</p>
             </div>
         </div>
     </div>

@@ -143,60 +143,138 @@
     </header>
 
     <!-- Page Header -->
-    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-20">
+    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-12">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Admission</h1>
-            <p class="text-xl text-goldLight">Begin your child's journey to excellence</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Admission</h1>
+            <p class="text-lg text-goldLight">Begin your child's journey to excellence</p>
         </div>
     </section>
 
     <!-- Admission Info -->
-    <section class="py-16 bg-white">
+    <section class="py-8 bg-white">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Join Saadhya Global School</h2>
-                <p class="text-gray-700 text-lg leading-relaxed">
-                    We welcome applications from students seeking admission from LKG to Grade 10. Our admission process is designed to understand your child's unique needs and ensure the best fit for their educational journey.
+            <div class="max-w-4xl mx-auto text-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-maroon mb-3">Join Saadhya Global School</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    We welcome applications from students seeking admission from LKG to Grade 7.
                 </p>
-            </div>
-            
-            <!-- Admission Steps -->
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span class="text-3xl font-bold text-gold">1</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-maroon mb-3">Submit Application</h3>
-                    <p class="text-gray-600">Fill out the admission form below with accurate details</p>
-                </div>
-                
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span class="text-3xl font-bold text-maroon">2</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-maroon mb-3">Review & Interview</h3>
-                    <p class="text-gray-600">Our team will review and schedule an interaction</p>
-                </div>
-                
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span class="text-3xl font-bold text-gold">3</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-maroon mb-3">Enrollment</h3>
-                    <p class="text-gray-600">Complete the admission formalities and join us</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Admission Form -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-cream to-goldLight">
+    <!-- Admission Form with Process Info -->
+    <section class="py-8 md:py-12 bg-gradient-to-br from-cream to-goldLight">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-8 text-center">Admission Application Form</h2>
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Left Side - Process Info (Desktop) / Bottom (Mobile) -->
+                    <div class="lg:col-span-1 order-2 lg:order-1">
+                        <div class="bg-white rounded-2xl shadow-xl p-4 sticky top-20">
+                            <h3 class="text-xl font-bold text-maroon mb-4">Join Saadhya Global School</h3>
+                            
+                            <!-- Inquiry Process Accordion -->
+                            <div class="mb-3 border-2 border-gray-200 rounded-lg overflow-hidden">
+                                <button 
+                                    id="inquiryToggle" 
+                                    class="w-full flex items-center justify-between p-3 bg-gradient-to-r from-maroon to-maroonDark text-white font-semibold hover:from-maroonDark hover:to-maroon transition text-sm"
+                                >
+                                    <span><i class="fas fa-clipboard-question mr-2"></i>Inquiry Process</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300" id="inquiryIcon"></i>
+                                </button>
+                                <div id="inquiryContent" class="hidden bg-gray-50 p-3 space-y-2">
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-maroon font-bold text-xs">1</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Submit Quick Inquiry</h4>
+                                            <p class="text-xs text-gray-600">Fill the inquiry form with basic details</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-maroon font-bold text-xs">2</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Initial Contact</h4>
+                                            <p class="text-xs text-gray-600">Our team will reach out within 24-48 hours</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-gold rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-maroon font-bold text-xs">3</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Information Session</h4>
+                                            <p class="text-xs text-gray-600">Schedule a campus visit or virtual meeting</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Admission Process Accordion -->
+                            <div class="border-2 border-gray-200 rounded-lg overflow-hidden">
+                                <button 
+                                    id="admissionToggle" 
+                                    class="w-full flex items-center justify-between p-3 bg-gradient-to-r from-gold to-goldDark text-maroon font-semibold hover:from-goldDark hover:to-gold transition text-sm"
+                                >
+                                    <span><i class="fas fa-graduation-cap mr-2"></i>Admission Process</span>
+                                    <i class="fas fa-chevron-down transition-transform duration-300" id="admissionIcon"></i>
+                                </button>
+                                <div id="admissionContent" class="hidden bg-gray-50 p-3 space-y-2">
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-maroon rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-gold font-bold text-xs">1</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Submit Application</h4>
+                                            <p class="text-xs text-gray-600">Complete the admission form with all required details</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-maroon rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-gold font-bold text-xs">2</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Document Verification</h4>
+                                            <p class="text-xs text-gray-600">Submit required documents for review</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-maroon rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-gold font-bold text-xs">3</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Student Interaction</h4>
+                                            <p class="text-xs text-gray-600">Meet with our academic team and student</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-maroon rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <span class="text-gold font-bold text-xs">4</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-maroon mb-1 text-sm">Enrollment</h4>
+                                            <p class="text-xs text-gray-600">Complete formalities and join our family</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-3 bg-gradient-to-r from-maroon to-maroonDark rounded-lg text-white text-center">
+                                <p class="text-xs mb-1">Need assistance?</p>
+                                <p class="font-semibold text-sm"><i class="fas fa-phone mr-2"></i>08008344244</p>
+                                <p class="text-xs mt-1 text-goldLight">Mon-Sat: 9 AM – 5 PM</p>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <form id="admissionForm" class="space-y-6">
+                    <!-- Right Side - Admission Form (Desktop) / Top (Mobile) -->
+                    <div class="lg:col-span-2 order-1 lg:order-2">
+                        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                            <h2 class="text-2xl md:text-3xl font-bold text-maroon mb-6 text-center">Admission Application Form</h2>
+                    
+                    <form id="admissionForm" class="space-y-4">
                         <!-- Student Name -->
                         <div>
                             <label for="studentName" class="block text-gray-700 font-semibold mb-2">
@@ -312,33 +390,10 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact for Queries -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Have Questions?</h2>
-            <p class="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
-                Our admissions team is here to help you. Feel free to contact us for any queries or to schedule a campus visit.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-phone text-gold text-2xl"></i>
-                    <span class="text-gray-700 text-lg font-semibold">08008344244</span>
-                </div>
-                <div class="hidden sm:block text-gray-300">|</div>
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-clock text-gold text-2xl"></i>
-                    <span class="text-gray-700 text-lg">Mon-Sat: 9 AM – 5 PM</span>
-                </div>
-            </div>
-            <div class="mt-8">
-                <a href="contact.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
-                    Contact Admissions Office
-                </a>
-            </div>
         </div>
     </section>
+
+   
 
     <!-- Footer -->
     <footer class="bg-charcoal text-white py-12">

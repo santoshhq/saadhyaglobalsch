@@ -240,6 +240,30 @@ if (closeAdmissionSuccessBtn) {
     });
 }
 
+// Inquiry Process Accordion
+const inquiryToggle = document.getElementById('inquiryToggle');
+const inquiryContent = document.getElementById('inquiryContent');
+const inquiryIcon = document.getElementById('inquiryIcon');
+
+if (inquiryToggle) {
+    inquiryToggle.addEventListener('click', function() {
+        inquiryContent.classList.toggle('hidden');
+        inquiryIcon.classList.toggle('rotate-180');
+    });
+}
+
+// Admission Process Accordion
+const admissionToggle = document.getElementById('admissionToggle');
+const admissionContent = document.getElementById('admissionContent');
+const admissionIcon = document.getElementById('admissionIcon');
+
+if (admissionToggle) {
+    admissionToggle.addEventListener('click', function() {
+        admissionContent.classList.toggle('hidden');
+        admissionIcon.classList.toggle('rotate-180');
+    });
+}
+
 // Contact Form Validation and Submission
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
