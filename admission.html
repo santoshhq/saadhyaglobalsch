@@ -233,10 +233,22 @@
                                 <option value="Grade 5">Grade 5</option>
                                 <option value="Grade 6">Grade 6</option>
                                 <option value="Grade 7">Grade 7</option>
-                                <option value="Grade 8">Grade 8</option>
-                                <option value="Grade 9">Grade 9</option>
-                                <option value="Grade 10">Grade 10</option>
                             </select>
+                        </div>
+                        
+                        <!-- Parent Name -->
+                        <div>
+                            <label for="parentName" class="block text-gray-700 font-semibold mb-2">
+                                Parent/Guardian Name <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="parentName" 
+                                name="parentName" 
+                                required
+                                class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none"
+                                placeholder="Enter parent/guardian name"
+                            >
                         </div>
                         
                         <!-- Mobile Number -->
@@ -256,49 +268,21 @@
                             <p class="text-sm text-gray-500 mt-1">Enter 10-digit number without country code</p>
                         </div>
                         
-                        <!-- Email (Optional) -->
+                        <!-- Email -->
                         <div>
                             <label for="email" class="block text-gray-700 font-semibold mb-2">
-                                Email ID <span class="text-gray-500 text-sm">(Optional)</span>
+                                Email ID <span class="text-red-500">*</span>
                             </label>
                             <input 
                                 type="email" 
                                 id="email" 
                                 name="email"
+                                required
                                 class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none"
                                 placeholder="your.email@example.com"
                             >
                         </div>
-                        
-                        <!-- Parent Name -->
-                        <div>
-                            <label for="parentName" class="block text-gray-700 font-semibold mb-2">
-                                Parent/Guardian Name <span class="text-red-500">*</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                id="parentName" 
-                                name="parentName" 
-                                required
-                                class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none"
-                                placeholder="Enter parent/guardian name"
-                            >
-                        </div>
-                        
-                        <!-- Address -->
-                        <div>
-                            <label for="address" class="block text-gray-700 font-semibold mb-2">
-                                Address <span class="text-red-500">*</span>
-                            </label>
-                            <textarea 
-                                id="address" 
-                                name="address" 
-                                required
-                                rows="3"
-                                class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none resize-none"
-                                placeholder="Enter complete residential address"
-                            ></textarea>
-                        </div>
+
                         
                         <!-- Additional Information -->
                         <div>
@@ -323,17 +307,6 @@
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 Submit Application
                             </button>
-                        </div>
-                        
-                        <!-- Success Message -->
-                        <div id="successMessage" class="hidden mt-6 p-6 bg-green-100 border-2 border-green-500 rounded-lg">
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500 text-3xl mr-4"></i>
-                                <div>
-                                    <h3 class="text-green-700 font-bold text-xl mb-2">Application Submitted Successfully!</h3>
-                                    <p class="text-green-600">Thank you for your interest in Saadhya Global School. Our admissions team will contact you shortly.</p>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -422,6 +395,23 @@
             </div>
         </div>
     </footer>
+
+    <!-- Success Popup Modal -->
+    <div id="admissionSuccessPopup" class="fixed inset-0 bg-black bg-opacity-70 z-[10000] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center transform scale-95 transition-all duration-300 relative">
+            <button id="closeAdmissionSuccessPopup" class="absolute top-4 right-4 text-gray-400 hover:text-maroon text-2xl font-bold transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mb-6">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-maroon mb-3">Application Submitted Successfully!</h3>
+                <p class="text-gray-600 mb-4">Thank you for your interest in Saadhya Global School. Our admissions team will contact you shortly.</p>
+                <p class="text-sm text-gray-400 italic">This popup will close automatically in 5 seconds...</p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

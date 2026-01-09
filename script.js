@@ -91,20 +91,53 @@ if (popupAdmissionForm) {
             return;
         }
         
-        console.log('Popup Form Data:', data);
+        // Validate email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(data.popupEmail)) {
+            alert('Please enter a valid email address');
+            return;
+        }
         
-        // Show success message
-        const successMessage = document.getElementById('popupSuccessMessage');
-        successMessage.classList.remove('hidden');
+        console.log('Popup Form Data:', data);
+         
+        // Hide the admission popup
+        const admissionPopup = document.getElementById('admissionPopup');
+        admissionPopup.classList.add('hidden');
+        admissionPopup.classList.remove('flex');
+        
+        // Show success popup
+        const successPopup = document.getElementById('successPopup');
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
+        
+        // Add scale animation
+        setTimeout(() => {
+            successPopup.querySelector('.transform').classList.remove('scale-95');
+            successPopup.querySelector('.transform').classList.add('scale-100');
+        }, 10);
         
         // Reset form
         popupAdmissionForm.reset();
         
-        // Hide popup after 3 seconds
+        // Auto-close success popup after 5 seconds
         setTimeout(() => {
-            document.getElementById('admissionPopup').classList.add('hidden');
-            document.getElementById('admissionPopup').classList.remove('flex');
-        }, 3000);
+            successPopup.classList.add('hidden');
+            successPopup.classList.remove('flex');
+            successPopup.querySelector('.transform').classList.remove('scale-100');
+            successPopup.querySelector('.transform').classList.add('scale-95');
+        }, 5000);
+    });
+}
+
+// Close button for popup success modal
+const closeSuccessPopupBtn = document.getElementById('closeSuccessPopup');
+if (closeSuccessPopupBtn) {
+    closeSuccessPopupBtn.addEventListener('click', () => {
+        const successPopup = document.getElementById('successPopup');
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+        successPopup.querySelector('.transform').classList.remove('scale-100');
+        successPopup.querySelector('.transform').classList.add('scale-95');
     });
 }
 
@@ -145,10 +178,9 @@ if (admissionForm) {
         const formData = {
             studentName: document.getElementById('studentName').value,
             grade: document.getElementById('grade').value,
+            parentName: document.getElementById('parentName').value,
             mobile: document.getElementById('mobile').value,
             email: document.getElementById('email').value,
-            parentName: document.getElementById('parentName').value,
-            address: document.getElementById('address').value,
             additionalInfo: document.getElementById('additionalInfo').value
         };
         
@@ -159,32 +191,52 @@ if (admissionForm) {
             return;
         }
         
-        // Validate email if provided
-        if (formData.email) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(formData.email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
+        // Validate email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(formData.email)) {
+            alert('Please enter a valid email address');
+            return;
         }
         
         // In a real application, you would send this data to a server
         console.log('Admission Form Data:', formData);
         
-        // Show success message
-        const successMessage = document.getElementById('successMessage');
-        successMessage.classList.remove('hidden');
-        
         // Reset form
         admissionForm.reset();
         
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Show success popup
+        const successPopup = document.getElementById('admissionSuccessPopup');
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
         
-        // Hide success message after 10 seconds
+        // Add scale animation
         setTimeout(() => {
-            successMessage.classList.add('hidden');
-        }, 10000);
+            successPopup.querySelector('.transform').classList.remove('scale-95');
+            successPopup.querySelector('.transform').classList.add('scale-100');
+        }, 10);
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Auto-close popup after 5 seconds
+        setTimeout(() => {
+            successPopup.classList.add('hidden');
+            successPopup.classList.remove('flex');
+            successPopup.querySelector('.transform').classList.remove('scale-100');
+            successPopup.querySelector('.transform').classList.add('scale-95');
+        }, 5000);
+    });
+}
+
+// Close button for admission success popup
+const closeAdmissionSuccessBtn = document.getElementById('closeAdmissionSuccessPopup');
+if (closeAdmissionSuccessBtn) {
+    closeAdmissionSuccessBtn.addEventListener('click', () => {
+        const successPopup = document.getElementById('admissionSuccessPopup');
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+        successPopup.querySelector('.transform').classList.remove('scale-100');
+        successPopup.querySelector('.transform').classList.add('scale-95');
     });
 }
 
