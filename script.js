@@ -141,31 +141,54 @@ if (closeSuccessPopupBtn) {
     });
 }
 
-// Reviews Carousel
+// Reviews Carousel - Infinite Loop
 const reviewsCarousel = document.getElementById('reviewsCarousel');
 if (reviewsCarousel) {
-    let currentPosition = 0;
-    const reviewCards = reviewsCarousel.children;
+    const reviewCards = Array.from(reviewsCarousel.children);
     const totalReviews = reviewCards.length;
     
+    // Clone first 3 cards and append to end for seamless loop
+    reviewCards.slice(0, 3).forEach(card => {
+        const clone = card.cloneNode(true);
+        reviewsCarousel.appendChild(clone);
+    });
+    
+    let currentPosition = 0;
+    let isTransitioning = false;
+    
     function moveCarousel() {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
         currentPosition++;
         
-        // Reset to start when reaching the end
-        if (currentPosition >= totalReviews) {
-            currentPosition = 0;
-        }
-        
-        // Calculate translation based on card width
-        const cardWidth = reviewCards[0].offsetWidth;
+        const allCards = reviewsCarousel.children;
+        const cardWidth = allCards[0].offsetWidth;
         const gap = 32; // 2rem gap
         const translateX = -(currentPosition * (cardWidth + gap));
         
+        reviewsCarousel.style.transition = 'transform 0.5s ease-in-out';
         reviewsCarousel.style.transform = `translateX(${translateX}px)`;
+        
+        // Reset to beginning seamlessly when reaching cloned cards
+        if (currentPosition >= totalReviews) {
+            setTimeout(() => {
+                reviewsCarousel.style.transition = 'none';
+                currentPosition = 0;
+                reviewsCarousel.style.transform = 'translateX(0)';
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 50);
+            }, 500);
+        } else {
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500);
+        }
     }
     
-    // Auto-scroll every 4 seconds
-    setInterval(moveCarousel, 4000);
+    // Auto-scroll every 3 seconds
+    setInterval(moveCarousel, 3000);
 }
 
 // Admission Form Validation and Submission
