@@ -1214,6 +1214,23 @@
         </div>
     </div>
 
+    <!-- Success Popup Modal -->
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-70 z-[10000] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center transform scale-95 transition-all duration-300 relative">
+            <button id="closeSuccessPopup" class="absolute top-4 right-4 text-gray-400 hover:text-maroon text-2xl font-bold transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mb-6">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-maroon mb-3">Inquiry Submitted Successfully!</h3>
+                <p class="text-gray-600 mb-4">Thank you for your interest in Saadhya Global School. Our admissions team will contact you shortly.</p>
+                <p class="text-sm text-gray-400 italic">This popup will close automatically in 5 seconds...</p>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
