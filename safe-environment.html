@@ -159,7 +159,7 @@
                 <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
                     <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
                     <li class="dropdown">
-                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">Know Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
                         <div class="dropdown-content" id="aboutDropdownContent">
                             <a href="vision-mission.html">Vision & Mission</a>
                             <a href="infrastructure.html">Infrastructure</a>
@@ -191,12 +191,20 @@
                 </button>
                 <ul class="space-y-6 mt-12">
                     <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
-                    <li><a href="vision-mission.html" class="text-white text-lg block hover:text-gold transition">Vision & Mission</a></li>
-                    <li><a href="infrastructure.html" class="text-white text-lg block hover:text-gold transition">Infrastructure</a></li>
-                    <li><a href="safe-environment.html" class="text-white text-lg block hover:text-gold transition">Safe Environment</a></li>
-                    <li><a href="academic-excellence.html" class="text-white text-lg block hover:text-gold transition">Academic Excellence</a></li>
-                    <li><a href="holistic-development.html" class="text-white text-lg block hover:text-gold transition">Holistic Development</a></li>
-                    <li><a href="leadership.html" class="text-white text-lg block hover:text-gold transition">Leadership</a></li>
+                    <li>
+                        <button id="mobile-about-toggle" class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between">
+                            <span>Know Us</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="mobile-about-icon"></i>
+                        </button>
+                        <ul id="mobile-about-submenu" class="mobile-submenu pl-4 mt-2 space-y-3">
+                            <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition">Vision & Mission</a></li>
+                            <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition">Infrastructure</a></li>
+                            <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition">Safe Environment</a></li>
+                            <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition">Academic Excellence</a></li>
+                            <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition">Holistic Development</a></li>
+                            <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition">Leadership</a></li>
+                        </ul>
+                    </li>
                     <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
                     <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
                     <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
@@ -492,9 +500,12 @@
     <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
         <div class="container mx-auto px-4 lg:px-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- About -->
+                <!-- About with Logo -->
                 <div>
-                    <h3 class="text-xl font-bold text-gold mb-4">Saadhya Global School</h3>
+                    <div class="flex items-center mb-4">
+                        <img src="logo.png" alt="Saadhya Global School Logo" class="h-12 w-12 mr-3">
+                        <h3 class="text-xl font-bold text-gold">Saadhya Global School</h3>
+                    </div>
                     <p class="text-gray-300 leading-relaxed">Nurturing young minds for a brighter future through excellence in education.</p>
                 </div>
                 
@@ -503,7 +514,7 @@
                     <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="text-gray-300 hover:text-gold transition">Home</a></li>
-                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">Know Us</a></li>
                         <li><a href="faq.html" class="text-gray-300 hover:text-gold transition">FAQ</a></li>
                         <li><a href="careers.html" class="text-gray-300 hover:text-gold transition">Careers</a></li>
                         <li><a href="admission.html" class="text-gray-300 hover:text-gold transition">Admissions</a></li>
@@ -578,5 +589,6 @@
             });
         }
     </script>
+    <script src="menu-script.js"></script>
 </body>
 </html>

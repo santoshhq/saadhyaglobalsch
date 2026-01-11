@@ -1,0 +1,404 @@
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+    }
+
+    if (closeMenuBtn) {
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    }
+
+    // Mobile About Submenu Toggle
+    const toggleBtn = document.getElementById('mobile-about-toggle');
+    const submenu = document.getElementById('mobile-about-submenu');
+    const icon = document.getElementById('mobile-about-icon');
+
+    if (toggleBtn && submenu) {
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            submenu.classList.toggle('active');
+            
+            if (icon) {
+                if (submenu.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+    }
+
+    // Close mobile menu when clicking on a link
+    if (mobileMenu) {
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // Admission Page - Inquiry Process Accordion
+    const inquiryToggle = document.getElementById('inquiryToggle');
+    const inquiryContent = document.getElementById('inquiryContent');
+    const inquiryIcon = document.getElementById('inquiryIcon');
+
+    if (inquiryToggle && inquiryContent) {
+        inquiryToggle.addEventListener('click', function() {
+            inquiryContent.classList.toggle('hidden');
+            if (inquiryIcon) {
+                if (inquiryContent.classList.contains('hidden')) {
+                    inquiryIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    inquiryIcon.style.transform = 'rotate(180deg)';
+                }
+            }
+        });
+    }
+
+    // Admission Page - Admission Process Accordion
+    const admissionToggle = document.getElementById('admissionToggle');
+    const admissionContent = document.getElementById('admissionContent');
+    const admissionIcon = document.getElementById('admissionIcon');
+
+    if (admissionToggle && admissionContent) {
+        admissionToggle.addEventListener('click', function() {
+            admissionContent.classList.toggle('hidden');
+            if (admissionIcon) {
+                if (admissionContent.classList.contains('hidden')) {
+                    admissionIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    admissionIcon.style.transform = 'rotate(180deg)';
+                }
+            }
+        });
+    }
+});
+
+// Hero carousel functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        heroSlides.forEach(slide => slide.classList.remove('active'));
+        heroSlides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % heroSlides.length;
+        showSlide(currentSlide);
+    }
+
+    // Change slide every 5 seconds
+    if (heroSlides.length > 1) {
+        setInterval(nextSlide, 5000);
+    }
+});
+
+// Reviews carousel functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('reviewsCarousel');
+    if (!carousel) return;
+
+    const cards = carousel.querySelectorAll('.review-card');
+    if (cards.length === 0) return;
+
+    let currentIndex = 0;
+    let cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 32; // 2rem gap
+
+    function updateCardsPerView() {
+        cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+    }
+
+    function updateCarousel() {
+        const offset = -(currentIndex * (cardWidth + gap));
+        carousel.style.transform = `translateX(${offset}px)`;
+    }
+
+    function nextReview() {
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        currentIndex = (currentIndex + 1) > maxIndex ? 0 : currentIndex + 1;
+        updateCarousel();
+    }
+
+    function prevReview() {
+        const maxIndex = Math.max(0, cards.length - cardsPerView);
+        currentIndex = (currentIndex - 1) < 0 ? maxIndex : currentIndex - 1;
+        updateCarousel();
+    }
+
+    // Auto-scroll reviews
+    let autoScroll = setInterval(nextReview, 5000);
+
+    // Pause auto-scroll on hover
+    carousel.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    carousel.addEventListener('mouseleave', () => {
+        autoScroll = setInterval(nextReview, 5000);
+    });
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
+        updateCardsPerView();
+        updateCarousel();
+    });
+});
+
+// Admission popup functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('admissionPopup');
+    const closePopupBtn = document.getElementById('closePopup');
+    const admissionForm = document.getElementById('admissionForm');
+
+    // Show popup after 10 seconds
+    setTimeout(() => {
+        if (popup) popup.classList.remove('hidden');
+        if (popup) popup.classList.add('flex');
+    }, 10000);
+
+    // Close popup
+    if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', () => {
+            if (popup) popup.classList.add('hidden');
+            if (popup) popup.classList.remove('flex');
+        });
+    }
+
+    // Close popup when clicking outside
+    if (popup) {
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.classList.add('hidden');
+                popup.classList.remove('flex');
+            }
+        });
+    }
+
+    // Handle main admission form submission (admission.html)
+    if (admissionForm) {
+        admissionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Close the admission popup if it's open
+            if (popup) popup.classList.add('hidden');
+            if (popup) popup.classList.remove('flex');
+            
+            // Show success popup
+            showAdmissionSuccessPopup();
+            
+            // Reset form
+            admissionForm.reset();
+        });
+    }
+    
+    // Handle popup admission form submission (index.html)
+    const popupAdmissionForm = document.getElementById('popupAdmissionForm');
+    if (popupAdmissionForm) {
+        popupAdmissionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Close the admission popup
+            if (popup) popup.classList.add('hidden');
+            if (popup) popup.classList.remove('flex');
+            
+            // Show success popup (index.html uses 'successPopup' ID)
+            showIndexSuccessPopup();
+            
+            // Reset form
+            popupAdmissionForm.reset();
+        });
+    }
+});
+
+// Admission Success Popup functionality
+function showAdmissionSuccessPopup() {
+    const successPopup = document.getElementById('admissionSuccessPopup');
+    const closeSuccessBtn = document.getElementById('closeAdmissionSuccessPopup');
+    
+    if (successPopup) {
+        // Show popup
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
+        
+        // Auto-close after 5 seconds
+        const autoCloseTimer = setTimeout(() => {
+            closeSuccessPopup();
+        }, 5000);
+        
+        // Close button handler
+        if (closeSuccessBtn) {
+            closeSuccessBtn.addEventListener('click', () => {
+                clearTimeout(autoCloseTimer);
+                closeSuccessPopup();
+            });
+        }
+        
+        // Close on outside click
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                clearTimeout(autoCloseTimer);
+                closeSuccessPopup();
+            }
+        });
+    }
+}
+
+function closeSuccessPopup() {
+    const successPopup = document.getElementById('admissionSuccessPopup');
+    if (successPopup) {
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+    }
+}
+
+// Index page Success Popup functionality (uses different ID)
+function showIndexSuccessPopup() {
+    const successPopup = document.getElementById('successPopup');
+    const closeSuccessBtn = document.getElementById('closeSuccessPopup');
+    
+    if (successPopup) {
+        // Show popup
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
+        
+        // Auto-close after 5 seconds
+        const autoCloseTimer = setTimeout(() => {
+            closeIndexSuccessPopup();
+        }, 5000);
+        
+        // Close button handler
+        if (closeSuccessBtn) {
+            closeSuccessBtn.addEventListener('click', () => {
+                clearTimeout(autoCloseTimer);
+                closeIndexSuccessPopup();
+            });
+        }
+        
+        // Close on outside click
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                clearTimeout(autoCloseTimer);
+                closeIndexSuccessPopup();
+            }
+        });
+    }
+}
+
+function closeIndexSuccessPopup() {
+    const successPopup = document.getElementById('successPopup');
+    if (successPopup) {
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+    }
+}
+
+// Career page Success Popup functionality
+function showCareerSuccessPopup() {
+    const successPopup = document.getElementById('careerSuccessPopup');
+    const closeSuccessBtn = document.getElementById('closeCareerSuccessPopup');
+    
+    if (successPopup) {
+        // Show popup
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
+        
+        // Auto-close after 5 seconds
+        const autoCloseTimer = setTimeout(() => {
+            closeCareerSuccessPopup();
+        }, 5000);
+        
+        // Close button handler
+        if (closeSuccessBtn) {
+            closeSuccessBtn.addEventListener('click', () => {
+                clearTimeout(autoCloseTimer);
+                closeCareerSuccessPopup();
+            });
+        }
+        
+        // Close on outside click
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                clearTimeout(autoCloseTimer);
+                closeCareerSuccessPopup();
+            }
+        });
+    }
+}
+
+function closeCareerSuccessPopup() {
+    const successPopup = document.getElementById('careerSuccessPopup');
+    if (successPopup) {
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+    }
+}
+
+// Contact Form Submission Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success popup
+            showContactSuccessPopup();
+            
+            // Reset form
+            contactForm.reset();
+        });
+    }
+});
+
+// Contact page Success Popup functionality
+function showContactSuccessPopup() {
+    const successPopup = document.getElementById('contactSuccessPopup');
+    const closeSuccessBtn = document.getElementById('closeContactSuccessPopup');
+    
+    if (successPopup) {
+        // Show popup
+        successPopup.classList.remove('hidden');
+        successPopup.classList.add('flex');
+        
+        // Auto-close after 5 seconds
+        const autoCloseTimer = setTimeout(() => {
+            closeContactSuccessPopup();
+        }, 5000);
+        
+        // Close button handler
+        if (closeSuccessBtn) {
+            closeSuccessBtn.addEventListener('click', () => {
+                clearTimeout(autoCloseTimer);
+                closeContactSuccessPopup();
+            });
+        }
+        
+        // Close on outside click
+        successPopup.addEventListener('click', (e) => {
+            if (e.target === successPopup) {
+                clearTimeout(autoCloseTimer);
+                closeContactSuccessPopup();
+            }
+        });
+    }
+}
+
+function closeContactSuccessPopup() {
+    const successPopup = document.getElementById('contactSuccessPopup');
+    if (successPopup) {
+        successPopup.classList.add('hidden');
+        successPopup.classList.remove('flex');
+    }
+}

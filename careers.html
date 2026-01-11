@@ -217,7 +217,7 @@
                 <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
                     <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
                     <li class="dropdown">
-                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">Know Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
                         <div class="dropdown-content" id="aboutDropdownContent">
                             <a href="vision-mission.html">Vision & Mission</a>
                             <a href="infrastructure.html">Infrastructure</a>
@@ -249,12 +249,20 @@
                 </button>
                 <ul class="space-y-6 mt-12">
                     <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
-                    <li><a href="vision-mission.html" class="text-white text-lg block hover:text-gold transition">Vision & Mission</a></li>
-                    <li><a href="infrastructure.html" class="text-white text-lg block hover:text-gold transition">Infrastructure</a></li>
-                    <li><a href="safe-environment.html" class="text-white text-lg block hover:text-gold transition">Safe Environment</a></li>
-                    <li><a href="academic-excellence.html" class="text-white text-lg block hover:text-gold transition">Academic Excellence</a></li>
-                    <li><a href="holistic-development.html" class="text-white text-lg block hover:text-gold transition">Holistic Development</a></li>
-                    <li><a href="leadership.html" class="text-white text-lg block hover:text-gold transition">Leadership</a></li>
+                    <li>
+                        <button id="mobile-about-toggle" class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between">
+                            <span>Know Us</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="mobile-about-icon"></i>
+                        </button>
+                        <ul id="mobile-about-submenu" class="mobile-submenu pl-4 mt-2 space-y-3">
+                            <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition">Vision & Mission</a></li>
+                            <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition">Infrastructure</a></li>
+                            <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition">Safe Environment</a></li>
+                            <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition">Academic Excellence</a></li>
+                            <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition">Holistic Development</a></li>
+                            <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition">Leadership</a></li>
+                        </ul>
+                    </li>
                     <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
                     <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
                     <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
@@ -365,7 +373,12 @@
                                 <div>
                                     <label for="phone" class="block text-gray-700 font-semibold mb-2">Phone Number *</label>
                                     <input type="tel" id="phone" name="phone" required
-                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                           pattern="[0-9]{10}"
+                                           minlength="10"
+                                           maxlength="10"
+                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition"
+                                           placeholder="10-digit mobile number">
+                                    <p class="text-sm text-gray-500 mt-1">Enter 10-digit number without country code</p>
                                 </div>
                             </div>
 
@@ -475,9 +488,12 @@
     <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
         <div class="container mx-auto px-4 lg:px-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- About -->
+                <!-- About with Logo -->
                 <div>
-                    <h3 class="text-xl font-bold text-gold mb-4">Saadhya Global School</h3>
+                    <div class="flex items-center mb-4">
+                        <img src="logo.png" alt="Saadhya Global School Logo" class="h-12 w-12 mr-3">
+                        <h3 class="text-xl font-bold text-gold">Saadhya Global School</h3>
+                    </div>
                     <p class="text-gray-300 leading-relaxed">Nurturing young minds for a brighter future through excellence in education.</p>
                 </div>
                 
@@ -486,7 +502,7 @@
                     <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="text-gray-300 hover:text-gold transition">Home</a></li>
-                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">Know Us</a></li>
                         <li><a href="faq.html" class="text-gray-300 hover:text-gold transition">FAQ</a></li>
                         <li><a href="careers.html" class="text-gray-300 hover:text-gold transition">Careers</a></li>
                         <li><a href="admission.html" class="text-gray-300 hover:text-gold transition">Admissions</a></li>
@@ -579,8 +595,8 @@
             // Basic validation
             const form = document.getElementById('careerForm');
             if (form.checkValidity()) {
-                // Show success message
-                alert('Thank you for your application! We have received your submission and will review it shortly. We will contact you if your profile matches our requirements.');
+                // Show success popup
+                showCareerSuccessPopup();
                 
                 // Reset form
                 form.reset();
@@ -598,5 +614,23 @@
             }
         }
     </script>
-</body>
+
+    <!-- Success Popup Modal -->
+    <div id="careerSuccessPopup" class="fixed inset-0 bg-black bg-opacity-70 z-[10000] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center transform scale-95 transition-all duration-300 relative">
+            <button id="closeCareerSuccessPopup" class="absolute top-4 right-4 text-gray-400 hover:text-maroon text-2xl font-bold transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="mb-6">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-4xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-maroon mb-3">Application Submitted Successfully!</h3>
+                <p class="text-gray-600 mb-4">Thank you for your application! We have received your submission and will review it shortly. We will contact you if your profile matches our requirements.</p>
+                <p class="text-sm text-gray-400 italic">This popup will close automatically in 5 seconds...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="menu-script.js"></script></body>
 </html>
