@@ -15,6 +15,19 @@ if (closeMenuBtn) {
     });
 }
 
+// Mobile About Us Submenu Toggle
+const mobileAboutBtn = document.getElementById('mobile-about-btn');
+const mobileSubmenu = document.getElementById('mobile-submenu');
+const mobileAboutIcon = document.getElementById('mobile-about-icon');
+
+if (mobileAboutBtn && mobileSubmenu) {
+    mobileAboutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileSubmenu.classList.toggle('active');
+        mobileAboutIcon.classList.toggle('rotate-180');
+    });
+}
+
 // Close mobile menu when clicking on a link
 const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
 mobileMenuLinks?.forEach(link => {

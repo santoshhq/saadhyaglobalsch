@@ -99,6 +99,21 @@
             transform: translateX(0);
         }
 
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-submenu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu-content {
+            overflow-y: auto;
+            max-height: calc(100vh - 80px);
+        }
+
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -191,7 +206,7 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+    <header class="bg-maroon shadow-lg z-50">
         <nav class="container mx-auto px-4 lg:px-6 py-3 lg:py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
@@ -237,21 +252,30 @@
                 <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
                     <i class="fas fa-times"></i>
                 </button>
-                <ul class="space-y-6 mt-12">
-                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
-                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
-                    <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Vision & Mission</a></li>
-                    <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Infrastructure</a></li>
-                    <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Safe Environment</a></li>
-                    <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Academic Excellence</a></li>
-                    <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Holistic Development</a></li>
-                    <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Leadership</a></li>
-                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
-                    <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
-                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
-                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
-                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
-                </ul>
+                <div class="mobile-menu-content">
+                    <ul class="space-y-6 mt-12">
+                        <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                        <li>
+                            <button id="mobile-about-btn" class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between">
+                                <span>About Us</span>
+                                <i class="fas fa-chevron-down transition-transform duration-300" id="mobile-about-icon"></i>
+                            </button>
+                            <ul class="mobile-submenu" id="mobile-submenu">
+                                <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Vision & Mission</a></li>
+                                <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Infrastructure</a></li>
+                                <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Safe Environment</a></li>
+                                <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Academic Excellence</a></li>
+                                <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Holistic Development</a></li>
+                                <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4 py-2">→ Leadership</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                        <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
+                        <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
+                        <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                        <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
