@@ -21,6 +21,17 @@ const mobileSubmenu = document.getElementById('mobile-submenu');
 const mobileAboutIcon = document.getElementById('mobile-about-icon');
 
 if (mobileAboutBtn && mobileSubmenu) {
+    // Check if current page is an About Us sub-page and auto-expand submenu
+    const aboutUsPages = ['vision-mission.html', 'infrastructure.html', 'safe-environment.html', 
+                          'academic-excellence.html', 'holistic-development.html', 'leadership.html'];
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if (aboutUsPages.includes(currentPage)) {
+        // Auto-expand the submenu if on an About Us sub-page
+        mobileSubmenu.classList.add('active');
+        mobileAboutIcon.classList.add('rotate-180');
+    }
+    
     mobileAboutBtn.addEventListener('click', (e) => {
         e.preventDefault();
         mobileSubmenu.classList.toggle('active');
