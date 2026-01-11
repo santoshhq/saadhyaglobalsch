@@ -171,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Admission months: December (12), January (1), February (2), March (3), April (4), May (5), June (6)
     const isAdmissionPeriod = currentMonth === 12 || (currentMonth >= 1 && currentMonth <= 6);
     
-    if (isAdmissionPeriod && !sessionStorage.getItem('admissionPopupShown')) {
+    // Always update the admission year text during admission period
+    if (isAdmissionPeriod && admissionYearText) {
         // Calculate admission year range
         let startYear, endYear;
         if (currentMonth === 12) {
@@ -185,15 +186,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update the admission year text
-        if (admissionYearText) {
-            admissionYearText.textContent = `Admission Open for ${startYear}-${endYear} | Join Saadhya Global School`;
-        }
-        
-        // Show popup after 10 seconds
+        admissionYearText.textContent = `Admission Open for ${startYear}-${endYear} | Join Saadhya Global School`;
+    }
+    
+    // Show popup after 10 seconds only if not shown before
+    if (isAdmissionPeriod && !sessionStorage.getItem('admissionPopupShown')) {
         setTimeout(() => {
             if (popup) {
                 popup.classList.remove('hidden');
-                popup.classList.add('flex');
                 sessionStorage.setItem('admissionPopupShown', 'true');
             }
         }, 10000);
@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closePopupBtn) {
         closePopupBtn.addEventListener('click', () => {
             if (popup) popup.classList.add('hidden');
-            if (popup) popup.classList.remove('flex');
         });
     }
 
@@ -212,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
         popup.addEventListener('click', (e) => {
             if (e.target === popup) {
                 popup.classList.add('hidden');
-                popup.classList.remove('flex');
             }
         });
     }
@@ -224,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Close the admission popup if it's open
             if (popup) popup.classList.add('hidden');
-            if (popup) popup.classList.remove('flex');
             
             // Show success popup
             showAdmissionSuccessPopup();
@@ -242,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Close the admission popup
             if (popup) popup.classList.add('hidden');
-            if (popup) popup.classList.remove('flex');
             
             // Show success popup (index.html uses 'successPopup' ID)
             showIndexSuccessPopup();
