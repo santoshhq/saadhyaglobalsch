@@ -54,6 +54,42 @@
             width: 100%;
         }
         
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #6F0814;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+            margin-top: 8px;
+        }
+        
+        .dropdown:hover .dropdown-content,
+        .dropdown-content.show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #8B0A1A;
+            color: #F5C542;
+            padding-left: 24px;
+        }
+        
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
@@ -156,9 +192,9 @@
 </head>
 <body class="bg-gray-50">
     <!-- Top Contact Bar -->
-    <div class="bg-maroonDark text-white py-2 hidden md:block">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center text-sm">
+    <div class="bg-maroonDark text-white py-2 hidden lg:block">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex justify-between items-center text-xs lg:text-sm">
                 <div class="flex space-x-6">
                     <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
                         <i class="fas fa-phone"></i>
@@ -191,23 +227,35 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <ul class="hidden md:flex space-x-8 items-center">
+                <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
                     <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
-                    <li><a href="about.html" class="nav-link text-white font-medium hover:text-gold">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="dropdown-content" id="aboutDropdownContent">
+                            <a href="vision-mission.html">Vision & Mission</a>
+                            <a href="infrastructure.html">Infrastructure</a>
+                            <a href="safe-environment.html">Safe Environment</a>
+                            <a href="academic-excellence.html">Academic Excellence</a>
+                            <a href="holistic-development.html">Holistic Development</a>
+                            <a href="leadership.html">Leadership</a>
+                        </div>
+                    </li>
                     <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
+                    <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
                     <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
                     <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
                 </ul>
                 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-xl md:text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </nav>
         
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-maroonDark shadow-2xl md:hidden z-50">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
             <div class="p-6">
                 <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
                     <i class="fas fa-times"></i>
@@ -215,7 +263,15 @@
                 <ul class="space-y-6 mt-12">
                     <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
                     <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Vision & Mission</a></li>
+                    <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Infrastructure</a></li>
+                    <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Safe Environment</a></li>
+                    <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Academic Excellence</a></li>
+                    <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Holistic Development</a></li>
+                    <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Leadership</a></li>
                     <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
+                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
                     <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
                     <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
                 </ul>
@@ -349,9 +405,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-charcoal text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- About -->
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-gold">Saadhya Global School</h3>
@@ -367,6 +423,8 @@
                         <li><a href="index.html" class="text-gray-400 hover:text-gold transition">Home</a></li>
                         <li><a href="about.html" class="text-gray-400 hover:text-gold transition">About Us</a></li>
                         <li><a href="gallery.html" class="text-gray-400 hover:text-gold transition">Gallery</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-gold transition">FAQ</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-gold transition">Careers</a></li>
                         <li><a href="admission.html" class="text-gray-400 hover:text-gold transition">Admission</a></li>
                     </ul>
                 </div>

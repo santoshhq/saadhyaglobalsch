@@ -23,6 +23,34 @@ mobileMenuLinks?.forEach(link => {
     });
 });
 
+// Dropdown Menu for About Us - Click/Tap Support
+const aboutDropdown = document.getElementById('aboutDropdown');
+const aboutDropdownContent = document.getElementById('aboutDropdownContent');
+
+if (aboutDropdown && aboutDropdownContent) {
+    // Toggle dropdown on click
+    aboutDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        aboutDropdownContent.classList.toggle('show');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!aboutDropdown.contains(e.target) && !aboutDropdownContent.contains(e.target)) {
+            aboutDropdownContent.classList.remove('show');
+        }
+    });
+    
+    // Allow navigation to dropdown items
+    const dropdownLinks = aboutDropdownContent.querySelectorAll('a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Let the link navigate normally
+            aboutDropdownContent.classList.remove('show');
+        });
+    });
+}
+
 // Hero Banner Carousel
 let currentHeroSlide = 0;
 const heroSlides = document.querySelectorAll('.hero-slide');

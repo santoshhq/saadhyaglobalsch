@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Saadhya Global School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#8B0A1A',
+                        maroonDark: '#6F0814',
+                        gold: '#F5C542',
+                        goldDark: '#D4A017',
+                        goldLight: '#FFE8A3',
+                        cream: '#FFF6DA',
+                        charcoal: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F5C542;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #6F0814;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+            margin-top: 8px;
+        }
+        
+        .dropdown:hover .dropdown-content,
+        .dropdown-content.show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #8B0A1A;
+            color: #F5C542;
+            padding-left: 24px;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 10, 26, 0.2);
+        }
+
+        /* Responsive Navigation */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 0 0.5rem;
+            }
+        }
+
+        /* Tablet-specific adjustments */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* Touch-friendly elements */
+        @media (max-width: 1023px) {
+            button, a, input, select, textarea {
+                min-height: 44px;
+            }
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-upload-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background-color: #FFF6DA;
+            border: 2px dashed #8B0A1A;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            background-color: #FFE8A3;
+            border-color: #F5C542;
+        }
+
+        .file-name {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #6F0814;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Contact Bar -->
+    <div class="bg-maroonDark text-white py-2 hidden lg:block">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex justify-between items-center text-xs lg:text-sm">
+                <div class="flex space-x-6">
+                    <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-phone"></i>
+                        <span>08008344244</span>
+                    </a>
+                    <a href="mailto:info@saadhyaglobal.com" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@saadhyaglobal.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-gold"></i>
+                    <span>Mon-Sat: 9 AM – 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 lg:px-6 py-3 lg:py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 lg:space-x-3">
+                    <img src="logo.png" alt="Saadhya Global School Logo" class="h-12 w-12 lg:h-14 lg:w-14 object-contain">
+                    <div class="text-white">
+                        <h1 class="text-lg md:text-xl lg:text-2xl font-bold">Saadhya Global School</h1>
+                        <p class="text-xs lg:text-sm text-goldLight">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
+                    <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="dropdown-content" id="aboutDropdownContent">
+                            <a href="vision-mission.html">Vision & Mission</a>
+                            <a href="infrastructure.html">Infrastructure</a>
+                            <a href="safe-environment.html">Safe Environment</a>
+                            <a href="academic-excellence.html">Academic Excellence</a>
+                            <a href="holistic-development.html">Holistic Development</a>
+                            <a href="leadership.html">Leadership</a>
+                        </div>
+                    </li>
+                    <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
+                    <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
+                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-xl md:text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="space-y-6 mt-12">
+                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Vision & Mission</a></li>
+                    <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Infrastructure</a></li>
+                    <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Safe Environment</a></li>
+                    <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Academic Excellence</a></li>
+                    <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Holistic Development</a></li>
+                    <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Leadership</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
+                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
+                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-12 md:py-16 lg:py-20">
+        <div class="container mx-auto px-4 lg:px-6 text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">Join Our Team</h1>
+            <p class="text-lg md:text-xl text-goldLight">Shape the Future of Education at Saadhya Global School</p>
+        </div>
+    </section>
+
+    <!-- Why Join Us Section -->
+    <section class="py-12 md:py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-maroon mb-4 md:mb-6">Why Work With Us?</h2>
+                    <p class="text-gray-700 text-base md:text-lg leading-relaxed max-w-4xl mx-auto">
+                        At Saadhya Global School, we believe that great teachers create great students. Join our passionate 
+                        team of educators dedicated to making a positive impact on young minds and shaping the leaders of tomorrow.
+                    </p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+                    
+                    <div class="bg-gradient-to-br from-cream to-goldLight p-8 rounded-xl shadow-lg card-hover text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-users text-3xl text-gold"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-maroon mb-4">Collaborative Environment</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Work with experienced educators in a supportive and collaborative atmosphere
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-cream to-goldLight p-8 rounded-xl shadow-lg card-hover text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-line text-3xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-maroon mb-4">Professional Growth</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Continuous training and development opportunities to enhance your skills
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-cream to-goldLight p-8 rounded-xl shadow-lg card-hover text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-hand-holding-usd text-3xl text-gold"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-maroon mb-4">Competitive Benefits</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Attractive salary packages and comprehensive benefits for our team members
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-cream to-goldLight">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-maroon mb-4 md:mb-6">Apply Now</h2>
+                    <p class="text-gray-700 text-base md:text-lg leading-relaxed">
+                        Fill out the form below to submit your application. We'll review your profile and get back to you soon.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 md:p-10 lg:p-12 rounded-2xl shadow-2xl">
+                    <form id="careerForm" onsubmit="handleSubmit(event)">
+                        
+                        <!-- Personal Information -->
+                        <div class="mb-6 md:mb-8">
+                            <h3 class="text-xl md:text-2xl font-bold text-maroon mb-4 md:mb-6 flex items-center">
+                                <i class="fas fa-user text-gold mr-3"></i>
+                                Personal Information
+                            </h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-gray-700 font-semibold mb-2">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required
+                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-gray-700 font-semibold mb-2">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required
+                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address *</label>
+                                    <input type="email" id="email" name="email" required
+                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-gray-700 font-semibold mb-2">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required
+                                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="address" class="block text-gray-700 font-semibold mb-2">Address</label>
+                                <textarea id="address" name="address" rows="2"
+                                          class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Professional Information -->
+                        <div class="mb-6 md:mb-8">
+                            <h3 class="text-xl md:text-2xl font-bold text-maroon mb-4 md:mb-6 flex items-center">
+                                <i class="fas fa-briefcase text-gold mr-3"></i>
+                                Professional Information
+                            </h3>
+                            
+                            <div class="mb-6">
+                                <label for="position" class="block text-gray-700 font-semibold mb-2">Position Applied For *</label>
+                                <select id="position" name="position" required
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                    <option value="">Select Position</option>
+                                    <option value="Primary Teacher">Primary Teacher</option>
+                                    <option value="Secondary Teacher - English">Secondary Teacher - English</option>
+                                    <option value="Secondary Teacher - Mathematics">Secondary Teacher - Mathematics</option>
+                                    <option value="Secondary Teacher - Science">Secondary Teacher - Science</option>
+                                    <option value="Secondary Teacher - Social Studies">Secondary Teacher - Social Studies</option>
+                                    <option value="Computer Science Teacher">Computer Science Teacher</option>
+                                    <option value="Physical Education Teacher">Physical Education Teacher</option>
+                                    <option value="Art & Music Teacher">Art & Music Teacher</option>
+                                    <option value="Librarian">Librarian</option>
+                                    <option value="Counselor">Counselor</option>
+                                    <option value="Administrative Staff">Administrative Staff</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="qualification" class="block text-gray-700 font-semibold mb-2">Highest Qualification *</label>
+                                    <select id="qualification" name="qualification" required
+                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                        <option value="">Select Qualification</option>
+                                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                        <option value="Master's Degree">Master's Degree</option>
+                                        <option value="Ph.D.">Ph.D.</option>
+                                        <option value="B.Ed.">B.Ed.</option>
+                                        <option value="M.Ed.">M.Ed.</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="experience" class="block text-gray-700 font-semibold mb-2">Years of Experience *</label>
+                                    <select id="experience" name="experience" required
+                                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition">
+                                        <option value="">Select Experience</option>
+                                        <option value="Fresher">Fresher</option>
+                                        <option value="1-2 years">1-2 years</option>
+                                        <option value="3-5 years">3-5 years</option>
+                                        <option value="6-10 years">6-10 years</option>
+                                        <option value="10+ years">10+ years</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="coverLetter" class="block text-gray-700 font-semibold mb-2">Cover Letter / Why do you want to join us?</label>
+                                <textarea id="coverLetter" name="coverLetter" rows="4"
+                                          class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-maroon focus:outline-none transition"
+                                          placeholder="Tell us about yourself and why you'd be a great fit for our school..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Resume Upload -->
+                        <div class="mb-6 md:mb-8">
+                            <h3 class="text-xl md:text-2xl font-bold text-maroon mb-4 md:mb-6 flex items-center">
+                                <i class="fas fa-file-upload text-gold mr-3"></i>
+                                Upload Resume
+                            </h3>
+                            
+                            <div class="file-upload-wrapper">
+                                <label for="resume" class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-maroon mr-3"></i>
+                                    <span class="text-gray-700 font-semibold">Click to upload your resume (PDF, DOC, DOCX) *</span>
+                                </label>
+                                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required onchange="updateFileName(this)">
+                            </div>
+                            <div id="fileName" class="file-name"></div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" 
+                                    class="bg-maroon hover:bg-maroonDark text-white font-bold py-4 px-12 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Submit Application
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold text-gold mb-4">Saadhya Global School</h3>
+                    <p class="text-gray-300 leading-relaxed">Nurturing young minds for a brighter future through excellence in education.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="faq.html" class="text-gray-300 hover:text-gold transition">FAQ</a></li>
+                        <li><a href="careers.html" class="text-gray-300 hover:text-gold transition">Careers</a></li>
+                        <li><a href="admission.html" class="text-gray-300 hover:text-gold transition">Admissions</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-gold transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone text-gold mr-2"></i> 08008344244</li>
+                        <li><i class="fas fa-envelope text-gold mr-2"></i> info@saadhyaglobal.com</li>
+                        <li><i class="fas fa-map-marker-alt text-gold mr-2"></i> Hyderabad, India</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-gray-400 text-sm md:text-base">
+                <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Dropdown Menu for About Us
+        const aboutDropdown = document.getElementById('aboutDropdown');
+        const aboutDropdownContent = document.getElementById('aboutDropdownContent');
+
+        if (aboutDropdown && aboutDropdownContent) {
+            aboutDropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutDropdownContent.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!aboutDropdown.contains(e.target) && !aboutDropdownContent.contains(e.target)) {
+                    aboutDropdownContent.classList.remove('show');
+                }
+            });
+        }
+
+        // File Upload Name Display
+        function updateFileName(input) {
+            const fileName = input.files[0]?.name;
+            const fileNameDisplay = document.getElementById('fileName');
+            if (fileName) {
+                fileNameDisplay.innerHTML = `<i class="fas fa-check-circle text-green-600 mr-2"></i>Selected: ${fileName}`;
+            } else {
+                fileNameDisplay.innerHTML = '';
+            }
+        }
+
+        // Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Basic validation
+            const form = document.getElementById('careerForm');
+            if (form.checkValidity()) {
+                // Show success message
+                alert('Thank you for your application! We have received your submission and will review it shortly. We will contact you if your profile matches our requirements.');
+                
+                // Reset form
+                form.reset();
+                document.getElementById('fileName').innerHTML = '';
+                
+                // In a real application, you would send the form data to a server here
+                // Example: using FormData and fetch API
+                // const formData = new FormData(form);
+                // fetch('/api/career-application', {
+                //     method: 'POST',
+                //     body: formData
+                // });
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+    </script>
+</body>
+</html>

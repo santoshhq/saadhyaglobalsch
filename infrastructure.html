@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure - Saadhya Global School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#8B0A1A',
+                        maroonDark: '#6F0814',
+                        gold: '#F5C542',
+                        goldDark: '#D4A017',
+                        goldLight: '#FFE8A3',
+                        cream: '#FFF6DA',
+                        charcoal: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F5C542;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #6F0814;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+            margin-top: 8px;
+        }
+        
+        .dropdown:hover .dropdown-content,
+        .dropdown-content.show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #8B0A1A;
+            color: #F5C542;
+            padding-left: 24px;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 10, 26, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Contact Bar -->
+    <div class="bg-maroonDark text-white py-2 hidden lg:block">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex justify-between items-center text-xs lg:text-sm">
+                <div class="flex space-x-6">
+                    <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-phone"></i>
+                        <span>08008344244</span>
+                    </a>
+                    <a href="mailto:info@saadhyaglobal.com" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@saadhyaglobal.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-gold"></i>
+                    <span>Mon-Sat: 9 AM – 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Saadhya Global School Logo" class="h-14 w-14 object-contain">
+                    <div class="text-white">
+                        <h1 class="text-xl md:text-2xl font-bold">Saadhya Global School</h1>
+                        <p class="text-xs md:text-sm text-goldLight">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
+                    <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="dropdown-content" id="aboutDropdownContent">
+                            <a href="vision-mission.html">Vision & Mission</a>
+                            <a href="infrastructure.html">Infrastructure</a>
+                            <a href="safe-environment.html">Safe Environment</a>
+                            <a href="academic-excellence.html">Academic Excellence</a>
+                            <a href="holistic-development.html">Holistic Development</a>
+                            <a href="leadership.html">Leadership</a>
+                        </div>
+                    </li>
+                    <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
+                    <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
+                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-xl md:text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="space-y-6 mt-12">
+                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Vision & Mission</a></li>
+                    <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Infrastructure</a></li>
+                    <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Safe Environment</a></li>
+                    <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Academic Excellence</a></li>
+                    <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Holistic Development</a></li>
+                    <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Leadership</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
+                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
+                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">World-Class Infrastructure</h1>
+            <p class="text-xl text-goldLight">State-of-the-Art Facilities for Holistic Learning</p>
+        </div>
+    </section>
+
+    <!-- Infrastructure Overview -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <p class="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
+                        At Saadhya Global School, we believe that a conducive learning environment plays a crucial role in shaping young minds. 
+                        Our modern infrastructure is designed to provide students with the best facilities for academic excellence, physical development, 
+                        and creative expression.
+                    </p>
+                </div>
+
+                <!-- Smart Classrooms -->
+                <div class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 md:order-1">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-chalkboard-teacher text-3xl text-gold"></i>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-maroon">Smart Classrooms</h2>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                                Our classrooms are equipped with the latest digital technology including interactive whiteboards, 
+                                projectors, and audio-visual systems that make learning more engaging and interactive.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Interactive smart boards in every classroom</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Well-ventilated and naturally lit spaces</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Ergonomic furniture for comfortable learning</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <div class="bg-cream p-4 rounded-2xl shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" 
+                                     alt="Smart Classroom" 
+                                     class="rounded-xl w-full object-cover" 
+                                     style="height: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Science Laboratories -->
+                <div class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="bg-cream p-4 rounded-2xl shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80" 
+                                     alt="Science Laboratory" 
+                                     class="rounded-xl w-full object-cover" 
+                                     style="height: 400px;">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-flask text-3xl text-maroon"></i>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-maroon">Science Laboratories</h2>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                                Our well-equipped laboratories for Physics, Chemistry, and Biology provide hands-on learning 
+                                experiences that encourage scientific inquiry and experimentation.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Separate labs for Physics, Chemistry, and Biology</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Modern equipment and safety measures</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Guided by experienced lab instructors</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computer Lab -->
+                <div class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 md:order-1">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-laptop-code text-3xl text-gold"></i>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-maroon">Computer Laboratory</h2>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                                Our state-of-the-art computer lab provides students with access to the latest technology 
+                                and software, preparing them for the digital age.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">High-speed internet connectivity</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Latest hardware and educational software</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Coding and programming courses</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <div class="bg-cream p-4 rounded-2xl shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&q=80" 
+                                     alt="Computer Laboratory" 
+                                     class="rounded-xl w-full object-cover" 
+                                     style="height: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Library -->
+                <div class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="bg-cream p-4 rounded-2xl shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80" 
+                                     alt="School Library" 
+                                     class="rounded-xl w-full object-cover" 
+                                     style="height: 400px;">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-gold to-goldDark rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-book-reader text-3xl text-maroon"></i>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-maroon">Library & Reading Area</h2>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                                Our library is a treasure trove of knowledge with a vast collection of books, journals, 
+                                and digital resources to foster a love for reading and research.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Extensive collection of books and periodicals</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Digital library with e-books and resources</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Comfortable reading spaces</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sports Facilities -->
+                <div class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="order-2 md:order-1">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-maroon to-maroonDark rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-running text-3xl text-gold"></i>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-maroon">Sports Complex</h2>
+                            </div>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                                Our sports facilities encourage physical fitness and team spirit with professional-grade 
+                                equipment and dedicated areas for various sports activities.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Multi-purpose sports ground</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Indoor games facilities</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-gold text-xl mr-3 mt-1"></i>
+                                    <span class="text-gray-700">Qualified sports coaches and trainers</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <div class="bg-cream p-4 rounded-2xl shadow-xl">
+                                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80" 
+                                     alt="Sports Facilities" 
+                                     class="rounded-xl w-full object-cover" 
+                                     style="height: 400px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-r from-maroon to-maroonDark text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Experience Our Facilities</h2>
+            <p class="text-xl text-goldLight mb-8 max-w-3xl mx-auto">
+                Schedule a campus tour to see our world-class infrastructure and understand how we create 
+                the perfect environment for your child's growth and development.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Schedule a Visit
+                </a>
+                <a href="admission.html" class="bg-white hover:bg-gray-100 text-maroon border-2 border-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Apply for Admission
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold text-gold mb-4">Saadhya Global School</h3>
+                    <p class="text-gray-300 leading-relaxed">Nurturing young minds for a brighter future through excellence in education.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="faq.html" class="text-gray-300 hover:text-gold transition">FAQ</a></li>
+                        <li><a href="careers.html" class="text-gray-300 hover:text-gold transition">Careers</a></li>
+                        <li><a href="admission.html" class="text-gray-300 hover:text-gold transition">Admissions</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-gold transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone text-gold mr-2"></i> 08008344244</li>
+                        <li><i class="fas fa-envelope text-gold mr-2"></i> info@saadhyaglobal.com</li>
+                        <li><i class="fas fa-map-marker-alt text-gold mr-2"></i> Hyderabad, India</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Dropdown Menu for About Us
+        const aboutDropdown = document.getElementById('aboutDropdown');
+        const aboutDropdownContent = document.getElementById('aboutDropdownContent');
+
+        if (aboutDropdown && aboutDropdownContent) {
+            aboutDropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutDropdownContent.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!aboutDropdown.contains(e.target) && !aboutDropdownContent.contains(e.target)) {
+                    aboutDropdownContent.classList.remove('show');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

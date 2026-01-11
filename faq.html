@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Saadhya Global School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: '#8B0A1A',
+                        maroonDark: '#6F0814',
+                        gold: '#F5C542',
+                        goldDark: '#D4A017',
+                        goldLight: '#FFE8A3',
+                        cream: '#FFF6DA',
+                        charcoal: '#1F1F1F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #F5C542;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #6F0814;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+            margin-top: 8px;
+        }
+        
+        .dropdown:hover .dropdown-content,
+        .dropdown-content.show {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #8B0A1A;
+            color: #F5C542;
+            padding-left: 24px;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(8px);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Contact Bar -->
+    <div class="bg-maroonDark text-white py-2 hidden lg:block">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex justify-between items-center text-xs lg:text-sm">
+                <div class="flex space-x-6">
+                    <a href="tel:08008344244" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-phone"></i>
+                        <span>08008344244</span>
+                    </a>
+                    <a href="mailto:info@saadhyaglobal.com" class="flex items-center space-x-2 hover:text-gold transition">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@saadhyaglobal.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-gold"></i>
+                    <span>Mon-Sat: 9 AM – 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-maroon shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="Saadhya Global School Logo" class="h-14 w-14 object-contain">
+                    <div class="text-white">
+                        <h1 class="text-xl md:text-2xl font-bold">Saadhya Global School</h1>
+                        <p class="text-xs md:text-sm text-goldLight">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
+                    <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
+                    <li class="dropdown">
+                        <a href="about.html" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="dropdown-content" id="aboutDropdownContent">
+                            <a href="vision-mission.html">Vision & Mission</a>
+                            <a href="infrastructure.html">Infrastructure</a>
+                            <a href="safe-environment.html">Safe Environment</a>
+                            <a href="academic-excellence.html">Academic Excellence</a>
+                            <a href="holistic-development.html">Holistic Development</a>
+                            <a href="leadership.html">Leadership</a>
+                        </div>
+                    </li>
+                    <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
+                    <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
+                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white text-xl md:text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
+            <div class="p-6">
+                <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="space-y-6 mt-12">
+                    <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
+                    <li><a href="about.html" class="text-white text-lg block hover:text-gold transition">About Us</a></li>
+                    <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Vision & Mission</a></li>
+                    <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Infrastructure</a></li>
+                    <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Safe Environment</a></li>
+                    <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Academic Excellence</a></li>
+                    <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Holistic Development</a></li>
+                    <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition pl-4">→ Leadership</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
+                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
+                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-maroon to-maroonDark text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+            <p class="text-xl text-goldLight">Find answers to common questions about Saadhya Global School</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Admission FAQs -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-maroon mb-6 flex items-center">
+                        <i class="fas fa-user-graduate text-gold mr-4"></i>
+                        Admission Related
+                    </h2>
+                    
+                    <!-- FAQ 1 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What is the admission process at Saadhya Global School?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                The admission process includes filling out an online application form, submitting required documents 
+                                (birth certificate, previous academic records, photographs), attending an interaction session with the 
+                                child and parents, and completing the registration formalities. Visit our Admission page for detailed 
+                                information and to download the application form.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What age groups do you admit?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                We admit students from Nursery to Class 12. For Nursery admission, the child should be 3 years old 
+                                as of March 31st of the academic year. Age criteria for other classes follow CBSE guidelines.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">When does the admission process start?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Admissions typically open in November-December for the next academic year starting in April. 
+                                However, we accept applications throughout the year based on seat availability. Please contact 
+                                our admission office for current availability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic FAQs -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-maroon mb-6 flex items-center">
+                        <i class="fas fa-book text-gold mr-4"></i>
+                        Academic Programs
+                    </h2>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What curriculum does the school follow?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Saadhya Global School follows the CBSE (Central Board of Secondary Education) curriculum, which 
+                                is recognized nationally and internationally. Our curriculum emphasizes conceptual learning, 
+                                critical thinking, and holistic development.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What is the teacher-student ratio?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                We maintain an optimal teacher-student ratio of 1:25 to ensure personalized attention for each 
+                                child. For primary classes, we have smaller class sizes to provide more individualized support.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">Do you offer after-school programs?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Yes, we offer a variety of after-school programs including sports coaching, music and dance classes, 
+                                art workshops, robotics club, language classes, and homework support. These programs run on weekdays 
+                                after regular school hours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facilities FAQs -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-maroon mb-6 flex items-center">
+                        <i class="fas fa-building text-gold mr-4"></i>
+                        Facilities & Infrastructure
+                    </h2>
+                    
+                    <!-- FAQ 7 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">Do you provide transportation services?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Yes, we provide safe and reliable bus transportation covering various routes across Hyderabad. 
+                                All our buses are GPS-tracked and equipped with CCTV cameras. Each bus has a trained driver 
+                                and a female attendant for student safety.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What safety measures are in place at the school?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Student safety is our top priority. We have 24/7 CCTV surveillance, trained security personnel, 
+                                controlled entry/exit points, fire safety equipment, regular safety drills, medical room with 
+                                trained staff, and comprehensive child protection policies. Visit our Safe Environment page 
+                                for detailed information.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="faq-item bg-white border-l-4 border-gold rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">Does the school have a library and computer lab?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Yes, we have a well-stocked library with over 5,000 books, digital resources, and quiet reading 
+                                spaces. Our modern computer lab is equipped with the latest computers, high-speed internet, and 
+                                educational software. Students have regular access to both facilities as part of their curriculum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General FAQs -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-maroon mb-6 flex items-center">
+                        <i class="fas fa-question-circle text-gold mr-4"></i>
+                        General Information
+                    </h2>
+                    
+                    <!-- FAQ 10 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What are the school timings?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                School timings are from 8:30 AM to 3:30 PM for all classes. The school operates Monday through 
+                                Saturday. Some Saturdays may be designated as activity days with modified timings. The office 
+                                is open from 9:00 AM to 5:00 PM on school days.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 11 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">How can parents track their child's progress?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                We maintain regular communication with parents through our parent portal, monthly newsletters, 
+                                progress reports, parent-teacher meetings (PTMs), and SMS/email updates. Our online portal provides 
+                                real-time access to attendance, academic performance, assignments, and school announcements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 12 -->
+                    <div class="faq-item bg-white border-l-4 border-maroon rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-cream transition" onclick="toggleFAQ(this)">
+                            <span class="font-semibold text-maroon text-lg">What is the fee structure?</span>
+                            <i class="fas fa-chevron-down text-gold faq-icon"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                Our fee structure varies by grade level and includes tuition fees, activity fees, and other charges. 
+                                We offer transparent pricing with no hidden costs. Payment can be made quarterly, semi-annually, or 
+                                annually. Please contact our admission office at 08008344244 or email info@saadhyaglobal.com for 
+                                detailed fee information and available payment plans.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-16 bg-gradient-to-r from-maroon to-maroonDark text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Still Have Questions?</h2>
+            <p class="text-xl text-goldLight mb-8 max-w-3xl mx-auto">
+                Our team is here to help! Contact us for any additional information about admissions, 
+                programs, or general inquiries.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Contact Us
+                </a>
+                <a href="tel:08008344244" class="bg-white hover:bg-gray-100 text-maroon border-2 border-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    <i class="fas fa-phone mr-2"></i>Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-8 md:py-10 lg:py-12">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold text-gold mb-4">Saadhya Global School</h3>
+                    <p class="text-gray-300 leading-relaxed">Nurturing young minds for a brighter future through excellence in education.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="faq.html" class="text-gray-300 hover:text-gold transition">FAQ</a></li>
+                        <li><a href="admission.html" class="text-gray-300 hover:text-gold transition">Admissions</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-gold transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone text-gold mr-2"></i> 08008344244</li>
+                        <li><i class="fas fa-envelope text-gold mr-2"></i> info@saadhyaglobal.com</li>
+                        <li><i class="fas fa-map-marker-alt text-gold mr-2"></i> Hyderabad, India</li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold text-gold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-2xl transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Dropdown Menu for About Us
+        const aboutDropdown = document.getElementById('aboutDropdown');
+        const aboutDropdownContent = document.getElementById('aboutDropdownContent');
+
+        if (aboutDropdown && aboutDropdownContent) {
+            aboutDropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutDropdownContent.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!aboutDropdown.contains(e.target) && !aboutDropdownContent.contains(e.target)) {
+                    aboutDropdownContent.classList.remove('show');
+                }
+            });
+        }
+
+        // FAQ Toggle Function
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.faq-icon').forEach(item => {
+                if (item !== icon) {
+                    item.classList.remove('rotate');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotate');
+        }
+    </script>
+</body>
+</html>
