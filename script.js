@@ -3,9 +3,26 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const closeMenuBtn = document.getElementById('close-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
+// Mobile About Us Submenu Toggle
+const mobileAboutBtn = document.getElementById('mobile-about-btn');
+const mobileSubmenu = document.getElementById('mobile-submenu');
+const mobileAboutIcon = document.getElementById('mobile-about-icon');
+
+// Check if current page is an About Us sub-page
+const aboutUsPages = ['vision-mission.html', 'infrastructure.html', 'safe-environment.html', 
+                      'academic-excellence.html', 'holistic-development.html', 'leadership.html'];
+const currentPage = window.location.pathname.split('/').pop();
+const isAboutUsPage = aboutUsPages.includes(currentPage);
+
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.add('active');
+        
+        // Auto-expand About Us submenu if on an About Us sub-page
+        if (isAboutUsPage && mobileSubmenu && mobileAboutIcon) {
+            mobileSubmenu.classList.add('active');
+            mobileAboutIcon.classList.add('rotate-180');
+        }
     });
 }
 
@@ -15,23 +32,7 @@ if (closeMenuBtn) {
     });
 }
 
-// Mobile About Us Submenu Toggle
-const mobileAboutBtn = document.getElementById('mobile-about-btn');
-const mobileSubmenu = document.getElementById('mobile-submenu');
-const mobileAboutIcon = document.getElementById('mobile-about-icon');
-
 if (mobileAboutBtn && mobileSubmenu) {
-    // Check if current page is an About Us sub-page and auto-expand submenu
-    const aboutUsPages = ['vision-mission.html', 'infrastructure.html', 'safe-environment.html', 
-                          'academic-excellence.html', 'holistic-development.html', 'leadership.html'];
-    const currentPage = window.location.pathname.split('/').pop();
-    
-    if (aboutUsPages.includes(currentPage)) {
-        // Auto-expand the submenu if on an About Us sub-page
-        mobileSubmenu.classList.add('active');
-        mobileAboutIcon.classList.add('rotate-180');
-    }
-    
     mobileAboutBtn.addEventListener('click', (e) => {
         e.preventDefault();
         mobileSubmenu.classList.toggle('active');
