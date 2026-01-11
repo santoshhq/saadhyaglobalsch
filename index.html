@@ -52,7 +52,7 @@
         
         @media (min-width: 1024px) {
             .hero-carousel {
-                height: 450px;
+                height: 600px;
             }
         }
         
@@ -211,6 +211,19 @@
             min-height: 300px;
             object-fit: contain;
         }
+        
+        /* Review cards responsive adjustments */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .review-card {
+                min-height: 400px !important;
+                height: auto !important;
+                min-width: calc(50% - 1rem) !important;
+            }
+            .review-card p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -285,12 +298,20 @@
                 </button>
                 <ul class="space-y-6 mt-12">
                     <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
-                    <li><a href="vision-mission.html" class="text-white text-lg block hover:text-gold transition">Vision & Mission</a></li>
-                    <li><a href="infrastructure.html" class="text-white text-lg block hover:text-gold transition">Infrastructure</a></li>
-                    <li><a href="safe-environment.html" class="text-white text-lg block hover:text-gold transition">Safe Environment</a></li>
-                    <li><a href="academic-excellence.html" class="text-white text-lg block hover:text-gold transition">Academic Excellence</a></li>
-                    <li><a href="holistic-development.html" class="text-white text-lg block hover:text-gold transition">Holistic Development</a></li>
-                    <li><a href="leadership.html" class="text-white text-lg block hover:text-gold transition">Leadership</a></li>
+                    <li>
+                        <button id="mobile-about-toggle" class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between">
+                            <span>About Us</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="mobile-about-icon"></i>
+                        </button>
+                        <ul id="mobile-about-submenu" class="mobile-submenu pl-4 mt-2 space-y-3">
+                            <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition">Vision & Mission</a></li>
+                            <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition">Infrastructure</a></li>
+                            <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition">Safe Environment</a></li>
+                            <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition">Academic Excellence</a></li>
+                            <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition">Holistic Development</a></li>
+                            <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition">Leadership</a></li>
+                        </ul>
+                    </li>
                     <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
                     <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
                     <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
@@ -315,13 +336,13 @@
 
     <!-- Why Choose Us Section -->
     <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+        <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+            <div class="text-center mb-12 px-0 md:px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Why Choose Saadhya Global School?</h2>
                 <p class="text-gray-600 text-lg max-w-3xl mx-auto">We provide a comprehensive educational experience that prepares students for success in the modern world</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-8">
                 <!-- Feature 1: Vision & Mission -->
                 <div class="bg-cream p-8 rounded-xl shadow-lg card-hover text-center">
                     <a href="vision-mission.html" class="block">
@@ -393,9 +414,9 @@
 
     <!-- Statistics Section -->
     <section class="py-16 md:py-24 bg-gradient-to-br from-maroon to-maroonDark text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+            <div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 lg:gap-8">
                     <!-- Stat 1 -->
                     <div class="text-center">
                         <div class="text-5xl md:text-6xl font-bold text-gold mb-2">
@@ -435,13 +456,13 @@
 
     <!-- Academic Programs Section -->
     <section class="py-16 md:py-24 bg-gradient-to-br from-cream to-goldLight">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
+        <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+            <div class="text-center mb-12 px-0 md:px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">Our Academic Programs</h2>
                 <p class="text-gray-600 text-lg max-w-3xl mx-auto">Comprehensive learning from pre-primary to middle school education</p>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-8">
                 <!-- Program 1 -->
                 <div class="bg-gradient-to-br from-maroon to-maroonDark text-white p-8 rounded-xl shadow-xl card-hover">
                     <div class="text-center">
@@ -471,8 +492,8 @@
             </div>
             
             <!-- Additional Features -->
-            <div class="mt-16 max-w-5xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8">
+            <div class="mt-16">
+                <div class="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-8">
                     <div class="text-center">
                         <div class="bg-white p-6 rounded-xl shadow-lg">
                             <i class="fas fa-language text-4xl text-maroon mb-4"></i>
@@ -501,9 +522,9 @@
 
     <!-- Principal's Message -->
 <section class="py-16 md:py-24 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+  <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+    <div>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-6 lg:gap-12 items-center">
 
         <!-- Text Content -->
         <div class="order-2 md:order-1">
@@ -557,9 +578,9 @@
 
     <!-- Great Words / Inspirational Quotes -->
     <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
+        <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-maroon mb-12">Words of Wisdom</h2>
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-4 lg:gap-8">
                 <div class="bg-white p-8 rounded-xl shadow-lg card-hover border-t-4 border-gold">
                     <i class="fas fa-quote-left text-3xl text-gold mb-4"></i>
                     <p class="text-gray-700 text-lg italic mb-4">
@@ -587,9 +608,9 @@
 
    <!-- Transport Facility Section -->
 <section class="py-16 md:py-24 bg-gradient-to-br from-cream to-goldLight">
-    <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+        <div>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-6 lg:gap-12 items-center">
                 
                 <!-- Image -->
                 <div>
@@ -667,15 +688,15 @@
             <div class="relative max-w-7xl mx-auto">
                 <div id="reviewsCarousel" class="flex gap-8 transition-transform duration-500 ease-in-out">
                     <!-- Review 1 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Great school with a vision for students. Teachers are so kind, sweet, patient, understanding, fun, imaginative, creative and, among so many other things, comforting."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -690,15 +711,15 @@
                     </div>
 
                     <!-- Review 2 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "I am happy with the teacher's care and approach towards academics. My child is studying in nursery and the class teacher (Rajeshwari) is really taking good care and supporting my child learn things."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -713,15 +734,15 @@
                     </div>
 
                     <!-- Review 3 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Saadhya school is best school.It's best option for parents to suggest this school and it's good environment and taking care of children each and everyone individual."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -736,15 +757,15 @@
                     </div>
 
                     <!-- Review 4 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Everything is going well thank you so much Rajeswari mam of nursery penguins for taking care of my child and improving her skills so well. Thank you so much for the entire saadhya team."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -759,15 +780,15 @@
                     </div>
 
                     <!-- Review 5 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Saadhya school is an excellent school, where we have experienced loving and caring environment. Leela madam is very friendly and take care of my child very well and engaging in activities. Thank you madam."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -782,15 +803,15 @@
                     </div>
 
                     <!-- Review 6 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Best School in Matrusrinagar. My kid is studying here since nursery and I am very happy with the way my child developed. My child enjoys going to school and it has been a great journey for us."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -805,15 +826,15 @@
                     </div>
 
                     <!-- Review 7 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "We had a wonderful experience at Saadhya Global School. The teachers were kind, patient, and truly dedicated to the children's growth. Especially my kid's class teacher SriTeja mam helped us alot in improving his behavior in all aspects."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -828,15 +849,15 @@
                     </div>
 
                     <!-- Review 8 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "My kid is studying here since from his play group. I have seen his growth in times. Caring of children, individual child development, teachers response and proactiveness are very good."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -851,15 +872,15 @@
                     </div>
 
                     <!-- Review 9 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Saadhya the Global school is very good School. The school maintains a perfect balance between education curriculum and activities. The teachers were well trained and take individual attention and care towards the kids."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -874,15 +895,15 @@
                     </div>
 
                     <!-- Review 10 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "School is very nice and cooperative. Sree teja mam is class teacher for my daughter so caring and pay attention to listen our concerns. So great to have her as a class teacher. Altogether it's good school for us."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -897,15 +918,15 @@
                     </div>
 
                     <!-- Review 11 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "We are happy for our little one to be a part of sadhya international school. The care and responsibility taken by the staff and management is amazing."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -920,15 +941,15 @@
                     </div>
 
                     <!-- Review 12 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "I saw a good improvement in my kid. Faculty are good and providing best education to the kids. Fee structure is low compared to other schools."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -943,15 +964,15 @@
                     </div>
 
                     <!-- Review 13 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "We had been with this institution since 2018. Now I feel really happy to have chosen this school for my child in first place. The classes are maintained very neatly and they are well ventilated. Totally satisfied."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -966,15 +987,15 @@
                     </div>
 
                     <!-- Review 14 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "We are very happy with Leela mam. My child is learning every day new word and new things. I was very happy to join in saadhya global school."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -989,15 +1010,15 @@
                     </div>
 
                     <!-- Review 15 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "First of all, I would like to thank the management and staff for being parent friendly, which is really unlikely in some other schools. They listen to the parents and reciprocate well. Thank you again."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -1012,15 +1033,15 @@
                     </div>
 
                     <!-- Review 16 -->
-                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
-                        <div class="flex mb-4">
+                    <div class="review-card min-w-full md:min-w-[calc(33.333%-1.5rem)] bg-white text-gray-800 p-6 md:p-8 rounded-xl shadow-xl flex flex-col" style="height: 350px;">
+                        <div class="flex mb-3 md:mb-4">
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                             <i class="fas fa-star star-rating"></i>
                         </div>
-                        <p class="text-gray-700 mb-6 italic leading-relaxed flex-grow">
+                        <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed flex-grow overflow-hidden">
                             "Excellent school for pre primary and primary students. Great ambience and excellent care in terms of teaching."
                         </p>
                         <div class="flex items-center mt-auto">
@@ -1040,9 +1061,9 @@
 
     <!-- Campus & Location Section -->
     <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="px-4 lg:px-6 mx-auto lg:max-w-6xl">
+            <div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-6 lg:gap-12 items-center">
                     <div class="order-2 md:order-1">
                         <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-6">Our Campus</h2>
                         <p class="text-gray-700 text-lg leading-relaxed mb-6">
