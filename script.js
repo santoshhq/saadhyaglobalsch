@@ -3,34 +3,15 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const closeMenuBtn = document.getElementById('close-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-// Mobile About Us Submenu Toggle
-const mobileAboutBtn = document.getElementById('mobile-about-btn');
-const mobileSubmenu = document.getElementById('mobile-submenu');
-const mobileAboutIcon = document.getElementById('mobile-about-icon');
-
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.add('active');
-        
-        // Always auto-expand About Us submenu when mobile menu opens
-        if (mobileSubmenu && mobileAboutIcon) {
-            mobileSubmenu.classList.add('active');
-            mobileAboutIcon.classList.add('rotate-180');
-        }
     });
 }
 
 if (closeMenuBtn) {
     closeMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
-    });
-}
-
-if (mobileAboutBtn && mobileSubmenu) {
-    mobileAboutBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        mobileSubmenu.classList.toggle('active');
-        mobileAboutIcon.classList.toggle('rotate-180');
     });
 }
 
