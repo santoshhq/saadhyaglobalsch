@@ -161,12 +161,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('admissionPopup');
     const closePopupBtn = document.getElementById('closePopup');
     const admissionForm = document.getElementById('admissionForm');
+    const admissionYearText = document.getElementById('admissionYearText');
 
-    // Show popup after 10 seconds
-    setTimeout(() => {
-        if (popup) popup.classList.remove('hidden');
-        if (popup) popup.classList.add('flex');
-    }, 10000);
+    // Check if current month is in admission period (December, January-June)
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1; // 1-12
+    const currentYear = currentDate.getFullYear();
+    
+    // Admission months: December (12), January (1), February (2), March (3), April (4), May (5), June (6)
+    const isAdmissionPeriod = currentMonth === 12 || (currentMonth >= 1 && currentMonth <= 6);
+    
+    if (isAdmissionPeriod) {
+        // Calculate admission year range
+        let startYear, endYear;
+        if (currentMonth === 12) {
+            // December: show current year - next year
+            startYear = currentYear;
+            endYear = currentYear + 1;
+        } else {
+            // January to June: show previous year - current year
+            startYear = currentYear - 1;
+            endYear = currentYear;
+        }
+        
+        // Update the admission year text
+        if (admissionYearText) {
+            admissionYearText.textContent = `Admission Open for ${startYear}-${endYear} | Join Saadhya Global School`;
+        }
+        
+        // Show popup after 10 seconds
+        setTimeout(() => {
+            if (popup) popup.classList.remove('hidden');
+            if (popup) popup.classList.add('flex');
+        }, 10000);
+    }
 
     // Close popup
     if (closePopupBtn) {
