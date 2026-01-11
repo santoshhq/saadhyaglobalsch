@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Admission months: December (12), January (1), February (2), March (3), April (4), May (5), June (6)
     const isAdmissionPeriod = currentMonth === 12 || (currentMonth >= 1 && currentMonth <= 6);
     
-    if (isAdmissionPeriod) {
+    if (isAdmissionPeriod && !sessionStorage.getItem('admissionPopupShown')) {
         // Calculate admission year range
         let startYear, endYear;
         if (currentMonth === 12) {
@@ -191,8 +191,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show popup after 10 seconds
         setTimeout(() => {
-            if (popup) popup.classList.remove('hidden');
-            if (popup) popup.classList.add('flex');
+            if (popup) {
+                popup.classList.remove('hidden');
+                popup.classList.add('flex');
+                sessionStorage.setItem('admissionPopupShown', 'true');
+            }
         }, 10000);
     }
 
