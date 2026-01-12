@@ -176,13 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Calculate admission year range
         let startYear, endYear;
         if (currentMonth === 12) {
-            // December: show current year - next year
+            // December: show current year + 1 - next year + 1
+            startYear = currentYear + 1;
+            endYear = currentYear + 2;
+        } else {
+            // January to June: show current year - current year + 1
             startYear = currentYear;
             endYear = currentYear + 1;
-        } else {
-            // January to June: show previous year - current year
-            startYear = currentYear - 1;
-            endYear = currentYear;
         }
         
         // Update the admission year text
