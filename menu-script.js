@@ -116,16 +116,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentIndex = 0;
     let cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 32; // 2rem gap
+    let autoScroll = null;
 
     function updateCardsPerView() {
         cardsPerView = window.innerWidth >= 768 ? 3 : 1;
     }
 
+    function getCardWidth() {
+        // Recalculate card width each time to handle layout changes
+        const card = cards[0];
+        return card && card.offsetWidth > 0 ? card.offsetWidth : 300; // Fallback to 300px
+    }
+
     function updateCarousel() {
-        const offset = -(currentIndex * (cardWidth + gap));
-        carousel.style.transform = `translateX(${offset}px)`;
+        const cardWidth = getCardWidth();
+        const gap = 32; // 2rem gap
+        
+        // Safety check to prevent freeze
+        if (cardWidth > 0) {
+            const offset = -(currentIndex * (cardWidth + gap));
+            carousel.style.transform = `translateX(${offset}px)`;
+        }
     }
 
     function nextReview() {
@@ -140,19 +151,43 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarousel();
     }
 
-    // Auto-scroll reviews
-    let autoScroll = setInterval(nextReview, 5000);
+    function startAutoScroll() {
+        // Clear any existing interval first
+        if (autoScroll) {
+            clearInterval(autoScroll);
+        }
+        autoScroll = setInterval(nextReview, 5000);
+    }
+
+    function stopAutoScroll() {
+        if (autoScroll) {
+            clearInterval(autoScroll);
+            autoScroll = null;
+        }
+    }
+
+    // Start auto-scroll
+    startAutoScroll();
 
     // Pause auto-scroll on hover
-    carousel.addEventListener('mouseenter', () => clearInterval(autoScroll));
-    carousel.addEventListener('mouseleave', () => {
-        autoScroll = setInterval(nextReview, 5000);
+    carousel.addEventListener('mouseenter', stopAutoScroll);
+    carousel.addEventListener('mouseleave', startAutoScroll);
+
+    // Update on window resize with debouncing
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            updateCardsPerView();
+            updateCarousel();
+        }, 250);
     });
 
-    // Update on window resize
-    window.addEventListener('resize', () => {
-        updateCardsPerView();
-        updateCarousel();
+    // Re-initialize carousel when visibility changes (fixes popup interference)
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            updateCarousel();
+        }
     });
 });
 
