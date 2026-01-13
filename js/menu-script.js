@@ -81,15 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Close mobile menu when clicking on a link
+    // Close mobile menu when clicking on a link (but not the About Us toggle)
     if (mobileMenu) {
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // Don't close menu for About Us toggle link - only close for actual page links
-                if (link.id !== 'mobile-about-toggle') {
-                    mobileMenu.classList.remove('active');
-                }
+                // Don't close menu if clicking the About Us toggle
+                if (link.getAttribute('href') === '#') return;
+                
+                mobileMenu.classList.remove('active');
             });
         });
     }
