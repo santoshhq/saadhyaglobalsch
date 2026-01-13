@@ -7,11 +7,25 @@ document.addEventListener('DOMContentLoaded', function() {
         currentPage = 'index.html';
     }
     
+    // Helper function to check if link matches current page
+    function isActivePage(linkHref) {
+        if (!linkHref || linkHref === '#') return false;
+        
+        // Extract filename from link (handle both relative and absolute URLs)
+        let linkPage = linkHref.split('/').pop().split('?')[0].split('#')[0];
+        
+        // If link is just '/' or empty, it's the index
+        if (linkPage === '' || linkPage === '/') {
+            linkPage = 'index.html';
+        }
+        
+        return linkPage.toLowerCase() === currentPage.toLowerCase();
+    }
+    
     // Desktop navigation - nav-links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
         }
     });
@@ -19,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Desktop navigation - Admission button
     const admissionLinks = document.querySelectorAll('a[href="admission.html"]');
     admissionLinks.forEach(link => {
-        if (currentPage === 'admission.html') {
+        if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
         }
     });
@@ -27,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Desktop navigation - Dropdown items (About Us submenu)
     const dropdownLinks = document.querySelectorAll('.dropdown-content a');
     dropdownLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
         }
     });
@@ -41,11 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenu) {
         const mobileLinks = mobileMenu.querySelectorAll('a[href]');
         mobileLinks.forEach(link => {
-            const linkPage = link.getAttribute('href');
-            // Skip the About Us toggle link (href="#")
-            if (linkPage === '#') return;
-            
-            if (linkPage === currentPage) {
+            if (isActivePage(link.getAttribute('href'))) {
                 link.classList.add('active');
             }
         });
