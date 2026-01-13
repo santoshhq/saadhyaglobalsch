@@ -123,17 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getCardWidth() {
-        // Recalculate card width each time to handle layout changes
         const card = cards[0];
-        return card && card.offsetWidth > 0 ? card.offsetWidth : 300; // Fallback to 300px
+        if (!card) return 0;
+        const width = card.getBoundingClientRect().width;
+        return width > 0 ? width : 0;
     }
 
     function updateCarousel() {
         const cardWidth = getCardWidth();
-        const gap = 32; // 2rem gap
+        const gap = 32;
         
-        // Safety check to prevent freeze
         if (cardWidth > 0) {
+            const maxIndex = Math.max(0, cards.length - cardsPerView);
+            currentIndex = Math.min(currentIndex, maxIndex);
+            
             const offset = -(currentIndex * (cardWidth + gap));
             carousel.style.transform = `translateX(${offset}px)`;
         }
@@ -152,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startAutoScroll() {
-        // Clear any existing interval first
         if (autoScroll) {
             clearInterval(autoScroll);
         }
@@ -173,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     carousel.addEventListener('mouseenter', stopAutoScroll);
     carousel.addEventListener('mouseleave', startAutoScroll);
 
-    // Update on window resize with debouncing
+    // Update on window resize
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
@@ -181,13 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCardsPerView();
             updateCarousel();
         }, 250);
-    });
-
-    // Re-initialize carousel when visibility changes (fixes popup interference)
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) {
-            updateCarousel();
-        }
     });
 });
 
