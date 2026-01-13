@@ -26,6 +26,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
         
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
         }
@@ -52,6 +58,31 @@
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        .nav-link.active {
+            background-color: #F5C542;
+            color: #8B0A1A;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .nav-link.active::after {
+            display: none;
+        }
+        
+        /* Admission button active state */
+        a[href="admission.html"].active {
+            background-color: #F5C542 !important;
+            color: #8B0A1A !important;
+        }
+        
+        /* Dropdown items active state */
+        .dropdown-content a.active {
+            background-color: #F5C542 !important;
+            color: #8B0A1A !important;
+            font-weight: 600;
         }
         
         .dropdown {
@@ -107,6 +138,22 @@
 
         .mobile-submenu.active {
             max-height: 500px;
+        }
+        
+        .mobile-menu a.active {
+            background-color: #F5C542 !important;
+            color: #8B0A1A !important;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .mobile-submenu a.active {
+            background-color: #F5C542;
+            color: #8B0A1A;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
         .faq-item {
@@ -189,7 +236,7 @@
                     <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
                     <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
                     <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
-                    <li><a href="admission.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
+                    <li><a href="admission.html" class="bg-white hover:bg-gray-100 text-maroon font-semibold px-6 py-2 rounded-lg transition duration-300">Admission</a></li>
                     <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
                 </ul>
                 
@@ -225,7 +272,7 @@
                     <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
                     <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
                     <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
-                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="admission.html" class="bg-white hover:bg-gray-100 text-maroon font-semibold px-6 py-3 rounded-lg transition duration-300 block text-center">Admission</a></li>
                     <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
                 </ul>
             </div>

@@ -1,8 +1,48 @@
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Highlight active page in navigation (desktop and mobile)
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Desktop navigation - nav-links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Desktop navigation - Admission button
+    const admissionLinks = document.querySelectorAll('a[href="admission.html"]');
+    admissionLinks.forEach(link => {
+        if (currentPage === 'admission.html') {
+            link.classList.add('active');
+        }
+    });
+    
+    // Desktop navigation - Dropdown items (About Us submenu)
+    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+    dropdownLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Mobile navigation
+    const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenu) {
+        const mobileLinks = mobileMenu.querySelectorAll('a[href]');
+        mobileLinks.forEach(link => {
+            const linkPage = link.getAttribute('href');
+            if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
@@ -125,8 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function getCardWidth() {
         const card = cards[0];
         if (!card) return 0;
-        const width = card.getBoundingClientRect().width;
-        return width > 0 ? width : 0;
+        const rect = card.getBoundingClientRect();
+        return rect.width > 0 ? rect.width : 0;
     }
 
     function updateCarousel() {
@@ -135,29 +175,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (cardWidth > 0) {
             const maxIndex = Math.max(0, cards.length - cardsPerView);
-            currentIndex = Math.min(currentIndex, maxIndex);
+            currentIndex = Math.min(Math.max(0, currentIndex), maxIndex);
             
             const offset = -(currentIndex * (cardWidth + gap));
+            carousel.style.transition = 'transform 0.5s ease-in-out';
             carousel.style.transform = `translateX(${offset}px)`;
         }
     }
 
     function nextReview() {
         const maxIndex = Math.max(0, cards.length - cardsPerView);
-        currentIndex = (currentIndex + 1) > maxIndex ? 0 : currentIndex + 1;
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
         updateCarousel();
     }
 
     function prevReview() {
         const maxIndex = Math.max(0, cards.length - cardsPerView);
-        currentIndex = (currentIndex - 1) < 0 ? maxIndex : currentIndex - 1;
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
         updateCarousel();
     }
 
     function startAutoScroll() {
-        if (autoScroll) {
-            clearInterval(autoScroll);
-        }
+        stopAutoScroll();
         autoScroll = setInterval(nextReview, 5000);
     }
 
@@ -168,6 +207,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Initial setup
+    updateCarousel();
+    
     // Start auto-scroll
     startAutoScroll();
 
@@ -175,8 +217,37 @@ document.addEventListener('DOMContentLoaded', function() {
     carousel.addEventListener('mouseenter', stopAutoScroll);
     carousel.addEventListener('mouseleave', startAutoScroll);
 
-    // Update on window resize
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoScroll();
+    }, { passive: true });
+    
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoScroll();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextReview();
+            } else {
+                prevReview();
+            }
+        }
+    }
+
+    // Optimized resize handler
     let resizeTimer;
+    
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
