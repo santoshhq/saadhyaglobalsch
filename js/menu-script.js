@@ -30,11 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Desktop navigation - Admission button
-    const admissionLinks = document.querySelectorAll('a[href="admission.html"]');
+    // Desktop navigation - Admission button (select by href and also by class to be thorough)
+    const admissionLinks = document.querySelectorAll('a[href="admission.html"], a[href*="admission.html"]');
     admissionLinks.forEach(link => {
         if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
+            // Force style update for browsers that might cache
+            link.style.backgroundColor = '#F5C542';
+            link.style.color = '#8B0A1A';
+            link.style.fontWeight = '600';
         }
     });
     
