@@ -1,13 +1,17 @@
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     // Highlight active page in navigation (desktop and mobile)
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    // If pathname is just '/' (root), treat it as index.html
+    if (currentPage === '' || currentPage === '/') {
+        currentPage = 'index.html';
+    }
     
     // Desktop navigation - nav-links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+        if (linkPage === currentPage) {
             link.classList.add('active');
         }
     });
@@ -41,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Skip the About Us toggle link (href="#")
             if (linkPage === '#') return;
             
-            if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+            if (linkPage === currentPage) {
                 link.classList.add('active');
             }
         });
