@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
+                // Don't close menu for About Us toggle link - only close for actual page links
+                if (link.id !== 'mobile-about-toggle') {
+                    mobileMenu.classList.remove('active');
+                }
             });
         });
     }
