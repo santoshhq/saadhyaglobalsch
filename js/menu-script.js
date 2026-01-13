@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileLinks = mobileMenu.querySelectorAll('a[href]');
         mobileLinks.forEach(link => {
             const linkPage = link.getAttribute('href');
+            // Skip the About Us toggle link (href="#")
+            if (linkPage === '#') return;
+            
             if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
                 link.classList.add('active');
             }
