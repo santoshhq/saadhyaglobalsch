@@ -219,14 +219,16 @@ document.addEventListener('DOMContentLoaded', function() {
         admissionYearText.textContent = `Admission Open for ${startYear}-${endYear} | Join Saadhya Global School`;
     }
     
-    // Show popup after 10 seconds only if not shown before
-    if (isAdmissionPeriod && !sessionStorage.getItem('admissionPopupShown')) {
-        setTimeout(() => {
-            if (popup) {
+    // Show popup after 10 seconds only during admission period and if not shown in this session
+    if (isAdmissionPeriod && popup) {
+        const popupShown = sessionStorage.getItem('admissionPopupShown');
+        
+        if (!popupShown) {
+            setTimeout(() => {
                 popup.classList.remove('hidden');
                 sessionStorage.setItem('admissionPopupShown', 'true');
-            }
-        }, 10000);
+            }, 10000);
+        }
     }
 
     // Close popup
