@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Desktop navigation - Admission button (select by href and also by class to be thorough)
-    const admissionLinks = document.querySelectorAll('a[href="admission.html"], a[href*="admission.html"]');
+    // Desktop navigation - Admission button (select by href but exclude footer links)
+    const admissionLinks = document.querySelectorAll('header a[href="admission.html"], header a[href*="admission.html"], #mobile-menu a[href="admission.html"]');
     admissionLinks.forEach(link => {
         if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
