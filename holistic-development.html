@@ -72,6 +72,12 @@
             display: none;
         }
         
+        /* Prevent hover effect on active nav-links */
+        .nav-link.active:hover {
+            background-color: #F5C542;
+            color: #8B0A1A;
+        }
+        
         /* Admission button active state */
         a[href="admission.html"].active,
         li a[href="admission.html"].active {
@@ -499,10 +505,10 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="contact.html" class="bg-gold hover:bg-goldDark text-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
-                    Connect With Us
+                    Schedule a Visit
                 </a>
-                <a href="admission.html" class="bg-white hover:bg-gray-100 text-maroon border-2 border-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
-                    Enroll Today
+                 <a href="admission.html" class="bg-white hover:bg-gray-100 text-maroon border-2 border-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                    Apply for Admission
                 </a>
             </div>
         </div>

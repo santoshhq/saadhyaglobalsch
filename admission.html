@@ -72,6 +72,12 @@
             display: none;
         }
         
+        /* Prevent hover effect on active nav-links */
+        .nav-link.active:hover {
+            background-color: #F5C542;
+            color: #8B0A1A;
+        }
+        
         /* Admission button active state */
         a[href="admission.html"].active,
         li a[href="admission.html"].active {
@@ -429,6 +435,8 @@
                                 class="form-input w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-gold focus:outline-none"
                             >
                                 <option value="">Select grade</option>
+                                <option value="Playgroup">Playgroup</option>
+                                <option value="Nursery">Nursery</option>
                                 <option value="LKG">LKG (Lower Kindergarten)</option>
                                 <option value="UKG">UKG (Upper Kindergarten)</option>
                                 <option value="Grade 1">Grade 1</option>
