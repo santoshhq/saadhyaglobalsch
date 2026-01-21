@@ -158,43 +158,228 @@
             font-weight: 600;
         }
         
-        .gallery-item {
+        /* Gallery Folder Box Styles */
+        .gallery-folder {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 16px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            height: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
-        .gallery-item:hover {
-            transform: scale(1.05);
+        .gallery-folder:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(139, 10, 26, 0.4);
         }
         
-        .gallery-item img {
+        .gallery-folder-thumbnail {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
         
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .gallery-folder:hover .gallery-folder-thumbnail {
+            transform: scale(1.05);
         }
         
-        .gallery-item::after {
-            content: '';
+        .gallery-folder-content {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(139, 10, 26, 0.7) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(139, 10, 26, 0.95), rgba(139, 10, 26, 0.7));
+            transition: all 0.3s ease;
         }
         
-        .gallery-item:hover::after {
-            opacity: 1;
+        .gallery-folder:hover .gallery-folder-content {
+            background: linear-gradient(to top, rgba(139, 10, 26, 1), rgba(139, 10, 26, 0.85));
+        }
+        
+        .gallery-folder-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .gallery-folder:hover .gallery-folder-title {
+            color: #F5C542;
+        }
+        
+        .gallery-folder-count {
+            font-size: 14px;
+            color: #F5C542;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .gallery-folder:hover .gallery-folder-count {
+            color: #8B0A1A;
+        }
+        
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-modal.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            background: rgba(139, 10, 26, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-close:hover {
+            background: #F5C542;
+            color: #8B0A1A;
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 10, 26, 0.8);
+            color: white;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .lightbox-nav:hover {
+            background: #F5C542;
+            color: #8B0A1A;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .lightbox-prev {
+            left: 30px;
+        }
+        
+        .lightbox-next {
+            right: 30px;
+        }
+        
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(139, 10, 26, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 10001;
+        }
+        
+        .lightbox-title {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            background: rgba(139, 10, 26, 0.9);
+            color: #F5C542;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            z-index: 10001;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                padding: 15px;
+            }
+            
+            .lightbox-prev {
+                left: 15px;
+            }
+            
+            .lightbox-next {
+                right: 15px;
+            }
+            
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .lightbox-title {
+                font-size: 14px;
+                padding: 8px 15px;
+                left: 15px;
+            }
+            
+            .gallery-folder {
+                height: 220px;
+            }
+            
+            .gallery-folder-icon {
+                font-size: 48px;
+            }
+            
+            .gallery-folder-title {
+                font-size: 20px;
+            }
         }
         
         /* Modal Styles */
@@ -361,95 +546,88 @@
                 <p class="text-gray-600 text-lg">Explore the vibrant life at Saadhya Global School</p>
             </div>
             
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipMSt1eK24yujOE1bVN4LNKqbBlm.png')">
-                    <img src="gallery/AF1QipMSt1eK24yujOE1bVN4LNKqbBlm.png" alt="School Activity" loading="lazy">
+            <!-- Gallery Folders Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                <!-- Annual Day Folder -->
+                <div class="gallery-folder" onclick="openGallery('Annual day', 'Annual Day')">
+                    <img src="gallery/Annual day/1234.jpeg" alt="Annual Day" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Annual Day</h3>
+                        <p class="gallery-folder-count">11 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipMTBCHvdaRZlr8eMcmuDaoURPTQ.png')">
-                    <img src="gallery/AF1QipMTBCHvdaRZlr8eMcmuDaoURPTQ.png" alt="School Activity" loading="lazy">
+                <!-- Assembly Folder -->
+                <div class="gallery-folder" onclick="openGallery('assembly', 'Assembly')">
+                    <img src="gallery/assembly/1.jpeg" alt="Assembly" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Assembly</h3>
+                        <p class="gallery-folder-count">7 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipMZ2ipNeDUaFTBnc_7U29Hjplzv.png')">
-                    <img src="gallery/AF1QipMZ2ipNeDUaFTBnc_7U29Hjplzv.png" alt="School Activity" loading="lazy">
+                <!-- Celebrations Folder -->
+                <div class="gallery-folder" onclick="openGallery('celebrations', 'Celebrations')">
+                    <img src="gallery/celebrations/pic-2.jpeg" alt="Celebrations" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Celebrations</h3>
+                        <p class="gallery-folder-count">12 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipMZmd7IFEBVtqF3AbmQEGUB7-oQ.png')">
-                    <img src="gallery/AF1QipMZmd7IFEBVtqF3AbmQEGUB7-oQ.png" alt="School Activity" loading="lazy">
+                <!-- Class Activity Folder -->
+                <div class="gallery-folder" onclick="openGallery('class activity', 'Class Activity')">
+                    <img src="gallery/class activity/fghj.jpeg" alt="Class Activity" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Class Activity</h3>
+                        <p class="gallery-folder-count">13 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipNJoYl9jyiM6cNyqUuHE-Ix-Weq.png')">
-                    <img src="gallery/AF1QipNJoYl9jyiM6cNyqUuHE-Ix-Weq.png" alt="School Activity" loading="lazy">
+                <!-- Field Trip Folder -->
+                <div class="gallery-folder" onclick="openGallery('field trip', 'Field Trip')">
+                    <img src="gallery/field trip/WhatsApp Image 2025-12-12 at 2.56.48 PM.jpeg" alt="Field Trip" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Field Trip</h3>
+                        <p class="gallery-folder-count">10 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipOijBm1ywOySNLgoOgw5ktP7JYG.png')">
-                    <img src="gallery/AF1QipOijBm1ywOySNLgoOgw5ktP7JYG.png" alt="School Activity" loading="lazy">
+                <!-- Kungfu and Skating Folder -->
+                <div class="gallery-folder" onclick="openGallery('Kungfu and Skating', 'Kungfu & Skating')">
+                    <img src="gallery/Kungfu and Skating/kung.jpeg" alt="Kungfu & Skating" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Kungfu & Skating</h3>
+                        <p class="gallery-folder-count">13 Photos</p>
+                    </div>
                 </div>
                 
-                <!-- Gallery Item 7 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipP7EKEavsW-tw39lQfzCQcn4xUu.png')">
-                    <img src="gallery/AF1QipP7EKEavsW-tw39lQfzCQcn4xUu.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 8 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/AF1QipPYaIRNQVCagDkvQ7rXSTTdGTVg.png')">
-                    <img src="gallery/AF1QipPYaIRNQVCagDkvQ7rXSTTdGTVg.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 9 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c-p801t3elB4p2Ckt8cyI6cYB7h.png')">
-                    <img src="gallery/APRy3c-p801t3elB4p2Ckt8cyI6cYB7h.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 10 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c8dX_vX_JJq4wr55BlWYxdxRNod.png')">
-                    <img src="gallery/APRy3c8dX_vX_JJq4wr55BlWYxdxRNod.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 11 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c8X5QFwPDPShpZN3y7P1SJbVZbj.png')">
-                    <img src="gallery/APRy3c8X5QFwPDPShpZN3y7P1SJbVZbj.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 12 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c915s0aGGoQkcJDerfS6kJ-qy-h.png')">
-                    <img src="gallery/APRy3c915s0aGGoQkcJDerfS6kJ-qy-h.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 13 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c9Ln1A0yR1xnRylTZrpQTDE2oVL.png')">
-                    <img src="gallery/APRy3c9Ln1A0yR1xnRylTZrpQTDE2oVL.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 14 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/APRy3c_OeGYdoKLoAoJz2GfbnfSI1ssf.png')">
-                    <img src="gallery/APRy3c_OeGYdoKLoAoJz2GfbnfSI1ssf.png" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 15 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/2023-09-25.jpg')">
-                    <img src="gallery/2023-09-25.jpg" alt="School Activity" loading="lazy">
-                </div>
-                
-                <!-- Gallery Item 16 -->
-                <div class="gallery-item h-64 shadow-lg" onclick="openModal('gallery/unnamed.jpg')">
-                    <img src="gallery/unnamed.jpg" alt="School Activity" loading="lazy">
+                <!-- Sports Day Folder -->
+                <div class="gallery-folder" onclick="openGallery('Sports day', 'Sports Day')">
+                    <img src="gallery/Sports day/123.jpeg" alt="Sports Day" class="gallery-folder-thumbnail">
+                    <div class="gallery-folder-content">
+                        <h3 class="gallery-folder-title">Sports Day</h3>
+                        <p class="gallery-folder-count">11 Photos</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <img id="modalImage" class="modal-content" alt="Enlarged view">
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-title" id="lightboxTitle">Gallery</div>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Gallery Image">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="navigateImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
     </div>
 
     <!-- Call to Action -->
@@ -534,42 +712,185 @@
 
     <script src="js/menu-script.js"></script>
     <script>
-        // Gallery Modal Functions - Must be defined before DOM ready
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            if (modal && modalImage) {
+        // Gallery data with all folders and their images
+        const galleryData = {
+            'Annual day': [
+                'gallery/Annual day/1234.jpeg',
+                'gallery/Annual day/DP202500.jpg',
+                'gallery/Annual day/DP202645.jpg',
+                'gallery/Annual day/DP202709.jpg',
+                'gallery/Annual day/sdfg.jpeg',
+                'gallery/Annual day/wertyui.jpeg',
+                'gallery/Annual day/WhatsApp Image 2026-01-20 at 9.34.37 AM.jpeg',
+                'gallery/Annual day/WhatsApp Image 2026-01-20 at 9.34.39 AM.jpeg',
+                'gallery/Annual day/WhatsApp Image 2026-01-20 at 9.34.40 AM.jpeg',
+                'gallery/Annual day/WhatsApp Image 2026-01-20 at 9.43.49 AM.jpeg',
+                'gallery/Annual day/WhatsApp Image 2026-01-20 at 9.43.50 AM.jpeg'
+            ],
+            'assembly': [
+                'gallery/assembly/1.jpeg',
+                'gallery/assembly/444(1).jpeg',
+                'gallery/assembly/444.jpeg',
+                'gallery/assembly/WhatsApp Image 2026-01-19 at .jpeg',
+                'gallery/assembly/WhatsApp Image 2026-01-19 at 9.jpeg',
+                'gallery/assembly/WhatsApp Image 2026-01-19.jpeg',
+                'gallery/assembly/WhatsApp Image 2026-01-20 at 9.34.38 AM.jpeg'
+            ],
+            'celebrations': [
+                'gallery/celebrations/.trashed-1696573260-IMG_20230906_115025.jpg',
+                'gallery/celebrations/Copy of _DCC8450.JPG',
+                'gallery/celebrations/IMG-20251103-WA0049.jpg',
+                'gallery/celebrations/IMG_20230906_100501 (1).jpg',
+                'gallery/celebrations/pic-2.jpeg',
+                'gallery/celebrations/WhatsApp Image 2023-10-13 at 1.03.16 PM.jpeg',
+                'gallery/celebrations/WhatsApp Image 2023-11-04 at 7.33.09 PM.jpeg',
+                'gallery/celebrations/WhatsApp Image 2025-10-10 at 15.33.42_17e85804.jpg',
+                'gallery/celebrations/WhatsApp Image 2025-10-11 at 13.21.25_ee65d956.jpg',
+                'gallery/celebrations/WhatsApp Image 2026-01-19 .jpeg',
+                'gallery/celebrations/WhatsApp Image 2026-01-19 at 1.19.40 .jpeg',
+                'gallery/celebrations/WhatsApp Image 2026-01-19 at 2.55.02 PM.jpeg'
+            ],
+            'class activity': [
+                'gallery/class activity/fghj.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 1.19.37 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 1.19.38 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 1.19.42 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 3.47.27 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 3.47.28 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 3.47.29 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 6.55.18 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 7.21.54 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 7.25.55 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 7.27.39 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 7.28.54 PM.jpeg',
+                'gallery/class activity/WhatsApp Image 2026-01-19 at 9.17.04 PM.jpeg'
+            ],
+            'field trip': [
+                'gallery/field trip/WhatsApp Image 2023-11-03 at 3.51.38 PM.jpeg',
+                'gallery/field trip/WhatsApp Image 2025-12-12 at 2.56.48 PM.jpeg',
+                'gallery/field trip/WhatsApp Image 2025-12-13 at 2.28.50 PM.jpeg',
+                'gallery/field trip/WhatsApp Image 2025-12-13 at 2.28.51 PM.jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 1..jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 1.19.41.jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 3.00.30 PM.jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 9.18.24 .jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 9.18.24 P.jpeg',
+                'gallery/field trip/WhatsApp Image 2026-01-19 at 9.18.24 PM.jpeg'
+            ],
+            'Kungfu and Skating': [
+                'gallery/Kungfu and Skating/12.jpeg',
+                'gallery/Kungfu and Skating/cv.jpeg',
+                'gallery/Kungfu and Skating/kung.jpeg',
+                'gallery/Kungfu and Skating/sdfgh.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.35 AM(1).jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.35 AM.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.38 AM (1)(1).jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.38 AM (1).jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.38 AM.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 11.18.39 AM.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 9.33.21 AM.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 9.33.22 AM.jpeg',
+                'gallery/Kungfu and Skating/WhatsApp Image 2026-01-20 at 9.33.23 AM.jpeg'
+            ],
+            'Sports day': [
+                'gallery/Sports day/123.jpeg',
+                'gallery/Sports day/cvbn.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.39 PM.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.45 P.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.45 PM.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.46 PM.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.48 PM.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.49 .jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.49 P.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.49 PM.jpeg',
+                'gallery/Sports day/WhatsApp Image 2026-01-19 at 3.41.50 PM.jpeg'
+            ]
+        };
+
+        // Current lightbox state
+        let currentFolder = '';
+        let currentIndex = 0;
+
+        // Open gallery lightbox
+        function openGallery(folderName, displayTitle) {
+            currentFolder = folderName;
+            currentIndex = 0;
+            
+            const modal = document.getElementById('lightboxModal');
+            const title = document.getElementById('lightboxTitle');
+            
+            if (modal && title && galleryData[folderName] && galleryData[folderName].length > 0) {
+                title.textContent = displayTitle;
+                updateLightboxImage();
                 modal.classList.add('active');
-                modalImage.src = imageSrc;
                 document.body.style.overflow = 'hidden';
             }
         }
-        
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
+
+        // Update lightbox image
+        function updateLightboxImage() {
+            const images = galleryData[currentFolder];
+            if (!images || images.length === 0) return;
+
+            const img = document.getElementById('lightboxImage');
+            const counter = document.getElementById('lightboxCounter');
+
+            if (img && counter) {
+                img.src = images[currentIndex];
+                counter.textContent = `${currentIndex + 1} / ${images.length}`;
+            }
+        }
+
+        // Navigate through images
+        function navigateImage(direction) {
+            const images = galleryData[currentFolder];
+            if (!images || images.length === 0) return;
+
+            currentIndex += direction;
+
+            // Loop around
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+
+            updateLightboxImage();
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
             if (modal) {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
         }
-        
-        // Initialize modal event listeners when DOM is ready
+
+        // Initialize event listeners when DOM is ready
         document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('imageModal');
+            const modal = document.getElementById('lightboxModal');
             
             if (modal) {
-                // Close modal when clicking outside the image
+                // Close when clicking on background
                 modal.addEventListener('click', function(e) {
                     if (e.target === this) {
-                        closeModal();
+                        closeLightbox();
                     }
                 });
             }
             
-            // Close modal with Escape key
+            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeModal();
+                const modal = document.getElementById('lightboxModal');
+                if (modal && modal.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateImage(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navigateImage(1);
+                    }
                 }
             });
         });
