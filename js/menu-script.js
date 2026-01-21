@@ -341,36 +341,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle main admission form submission (admission.html)
-    if (admissionForm) {
-        admissionForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Close the admission popup if it's open
-            if (popup) popup.classList.add('hidden');
-            
-            // Show success popup
-            showAdmissionSuccessPopup();
-            
-            // Reset form
-            admissionForm.reset();
-        });
-    }
-    
     // Handle popup admission form submission (index.html)
     const popupAdmissionForm = document.getElementById('popupAdmissionForm');
     if (popupAdmissionForm) {
         popupAdmissionForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Close the admission popup
-            if (popup) popup.classList.add('hidden');
-            
-            // Show success popup (index.html uses 'successPopup' ID)
-            showIndexSuccessPopup();
-            
-            // Reset form
-            popupAdmissionForm.reset();
+            const payload = {
+                formName: "AdmissionForm",
+                formType: "Popup",
+                studentName: popupAdmissionForm.querySelector('[name="popupStudentName"]')?.value.trim() || "",
+                grade: popupAdmissionForm.querySelector('[name="popupGrade"]')?.value || "",
+                parentName: popupAdmissionForm.querySelector('[name="popupParentName"]')?.value.trim() || "",
+                mobile: popupAdmissionForm.querySelector('[name="popupMobile"]')?.value.trim() || "",
+                email: popupAdmissionForm.querySelector('[name="popupEmail"]')?.value.trim() || "",
+                additionalInfo: ""
+            };
+
+            // Show loading state
+            const submitBtn = popupAdmissionForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn?.innerHTML;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+            }
+
+            // Submit to Google Apps Script
+            fetch("https://script.google.com/macros/s/AKfycbx45QNLbhyYhPU29jpy475aVEoyorWfXHeGanChuJkhFUDt-3sRWiB6G5qq6McvwCBU/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Close the admission popup
+                if (popup) popup.classList.add('hidden');
+                
+                // Show success popup (index.html uses 'successPopup' ID)
+                showIndexSuccessPopup();
+                
+                // Reset form
+                popupAdmissionForm.reset();
+                
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            })
+            .catch(err => {
+                console.error("Popup form submission error:", err);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+                alert("Submission failed. Please try again.");
+            });
         });
     }
 });
@@ -498,6 +525,93 @@ function closeCareerSuccessPopup() {
     }
 }
 
+// Career Form Submission Handler with Resume Upload
+document.addEventListener('DOMContentLoaded', function() {
+    const careerForm = document.getElementById('careerForm');
+    
+    if (careerForm) {
+        careerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = careerForm.querySelector('button[type="submit"]');
+            const originalBtnHTML = submitBtn?.innerHTML;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading & Submitting...';
+            }
+
+            // Get file
+            const fileInput = document.getElementById('resume');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert("Please select a resume file");
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHTML;
+                }
+                return;
+            }
+
+            // Convert file to base64
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64File = e.target.result.split(',')[1];
+                
+                const payload = {
+                    firstName: document.getElementById('firstName')?.value.trim() || "",
+                    lastName: document.getElementById('lastName')?.value.trim() || "",
+                    email: document.getElementById('email')?.value.trim() || "",
+                    phone: document.getElementById('phone')?.value.trim() || "",
+                    address: document.getElementById('address')?.value.trim() || "",
+                    position: document.getElementById('position')?.value || "",
+                    qualification: document.getElementById('qualification')?.value || "",
+                    experience: document.getElementById('experience')?.value || "",
+                    coverLetter: document.getElementById('coverLetter')?.value.trim() || "",
+                    resume: base64File,
+                    resumeName: file.name,
+                    resumeType: file.type
+                };
+
+                // Submit to Google Apps Script
+                fetch("https://script.google.com/macros/s/AKfycbxj5O8dVKYiJU6NiLbgY8iMQn0aBDPrAnRFQVtuYuSrVT8KA0sqCaKraeruiUqfqFkv/exec", {
+                    method: "POST",
+                    redirect: "follow",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        showCareerSuccessPopup();
+                        careerForm.reset();
+                        document.getElementById('fileName').innerHTML = '';
+                    } else {
+                        alert("Submission failed: " + (data.message || "Unknown error"));
+                    }
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHTML;
+                    }
+                })
+                .catch(err => {
+                    console.error("Submission error:", err);
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnHTML;
+                    }
+                    alert("Submission failed: " + err.message);
+                });
+            };
+
+            reader.readAsDataURL(file);
+        });
+    }
+});
+
 // Contact Form Submission Handler
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
@@ -506,11 +620,54 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success popup
-            showContactSuccessPopup();
-            
-            // Reset form
-            contactForm.reset();
+            const payload = {
+                formName: "ContactForm",
+                name: document.getElementById("name")?.value.trim() || "",
+                mobile: document.getElementById("contactMobile")?.value.trim() || "",
+                email: document.getElementById("contactEmail")?.value.trim() || "",
+                subject: document.getElementById("subject")?.value.trim() || "",
+                message: document.getElementById("message")?.value.trim() || ""
+            };
+
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnHTML = submitBtn?.innerHTML;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            }
+
+            // Submit to Google Apps Script
+            fetch("https://script.google.com/macros/s/AKfycbyvjIfs-uDrNaINiQhLhA7gI4tnUgXlJRprteStgm4hpPlzKuU4ZLs5FMWOa5dcgIzb/exec", {
+                method: "POST",
+                redirect: "follow",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Show custom success popup (no browser alert)
+                    showContactSuccessPopup();
+                    contactForm.reset();
+                } else {
+                    alert("Submission failed: " + (data.message || "Unknown error"));
+                }
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHTML;
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHTML;
+                }
+                alert("Submission failed: " + err.message + "\n\nPlease check:\n1. Google Apps Script is deployed as web app\n2. Sheet named 'ContactForm' exists in spreadsheet\n3. Script has proper permissions");
+            });
         });
     }
 });
@@ -555,3 +712,60 @@ function closeContactSuccessPopup() {
         successPopup.classList.remove('flex');
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const admissionFormMain = document.getElementById("admissionForm");
+
+    if (!admissionFormMain) return; // safety check
+
+    admissionFormMain.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const payload = {
+            formName: "AdmissionForm",
+            formType: "Main",
+            studentName: document.getElementById("studentName")?.value.trim() || "",
+            grade: document.getElementById("grade")?.value || "",
+            parentName: document.getElementById("parentName")?.value.trim() || "",
+            mobile: document.getElementById("mobile")?.value.trim() || "",
+            email: document.getElementById("email")?.value.trim() || "",
+            additionalInfo: document.getElementById("additionalInfo")?.value.trim() || ""
+        };
+
+        // Show loading state
+        const submitBtn = admissionFormMain.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn?.textContent;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+        }
+
+        // Using no-cors mode to avoid CORS issues with Google Apps Script
+        fetch("https://script.google.com/macros/s/AKfycbx45QNLbhyYhPU29jpy475aVEoyorWfXHeGanChuJkhFUDt-3sRWiB6G5qq6McvwCBU/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            // With no-cors, we can't read the response, but if no error thrown, assume success
+            showAdmissionSuccessPopup();
+            admissionFormMain.reset();
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
+        })
+        .catch(err => {
+            console.error("Submission error:", err);
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
+            alert("Submission failed: " + err.message + "\n\nPlease check:\n1. Google Apps Script is deployed as web app\n2. Sheet named 'AdmissionForm' exists in spreadsheet\n3. Script has proper permissions");
+        });
+    });
+});
+
