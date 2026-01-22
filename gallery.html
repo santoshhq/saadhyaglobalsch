@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,26 +26,31 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Playfair Display', serif;
         }
-        
+
         .nav-link {
             position: relative;
             transition: color 0.3s ease;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -55,11 +61,11 @@
             background-color: #F5C542;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
+
         .nav-link.active {
             background-color: #F5C542;
             color: #8B0A1A;
@@ -67,11 +73,11 @@
             border-radius: 6px;
             font-weight: 600;
         }
-        
+
         .nav-link.active::after {
             display: none;
         }
-        
+
         /* Admission button active state */
         a[href="admission.html"].active,
         li a[href="admission.html"].active {
@@ -79,18 +85,18 @@
             color: #8B0A1A !important;
             font-weight: 600 !important;
         }
-        
+
         /* Dropdown items active state */
         .dropdown-content a.active {
             background-color: #F5C542 !important;
             color: #8B0A1A !important;
             font-weight: 600;
         }
-        
+
         .dropdown {
             position: relative;
         }
-        
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -98,17 +104,17 @@
             left: 0;
             background-color: #6F0814;
             min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             border-radius: 0 0 8px 8px;
             padding-top: 8px;
         }
-        
+
         .dropdown:hover .dropdown-content,
         .dropdown-content.show {
             display: block;
         }
-        
+
         .dropdown-content a {
             color: white;
             padding: 12px 16px;
@@ -116,18 +122,18 @@
             display: block;
             transition: all 0.3s ease;
         }
-        
+
         .dropdown-content a:hover {
             background-color: #8B0A1A;
             color: #F5C542;
             padding-left: 24px;
         }
-        
+
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
-        
+
         .mobile-menu.active {
             transform: translateX(0);
         }
@@ -141,7 +147,7 @@
         .mobile-submenu.active {
             max-height: 500px;
         }
-        
+
         .mobile-menu a.active {
             background-color: #F5C542 !important;
             color: #8B0A1A !important;
@@ -149,7 +155,7 @@
             border-radius: 6px;
             font-weight: 600;
         }
-        
+
         .mobile-submenu a.active {
             background-color: #F5C542;
             color: #8B0A1A;
@@ -157,7 +163,7 @@
             border-radius: 4px;
             font-weight: 600;
         }
-        
+
         /* Gallery Folder Box Styles */
         .gallery-folder {
             position: relative;
@@ -166,25 +172,25 @@
             cursor: pointer;
             transition: all 0.3s ease;
             height: 280px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .gallery-folder:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 30px rgba(139, 10, 26, 0.4);
         }
-        
+
         .gallery-folder-thumbnail {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-        
+
         .gallery-folder:hover .gallery-folder-thumbnail {
             transform: scale(1.05);
         }
-        
+
         .gallery-folder-content {
             position: absolute;
             bottom: 0;
@@ -194,11 +200,11 @@
             background: linear-gradient(to top, rgba(139, 10, 26, 0.95), rgba(139, 10, 26, 0.7));
             transition: all 0.3s ease;
         }
-        
+
         .gallery-folder:hover .gallery-folder-content {
             background: linear-gradient(to top, rgba(139, 10, 26, 1), rgba(139, 10, 26, 0.85));
         }
-        
+
         .gallery-folder-title {
             font-size: 24px;
             font-weight: 700;
@@ -207,37 +213,49 @@
             margin-bottom: 10px;
             transition: color 0.3s ease;
         }
-        
+
         .gallery-folder:hover .gallery-folder-title {
             color: #F5C542;
         }
-        
+
         .gallery-folder-count {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.95);
             font-weight: 500;
             transition: color 0.3s ease;
+            text-align: center;
         }
-        
+
         .gallery-folder:hover .gallery-folder-count {
             color: #F5C542;
         }
-        
-        /* Lightbox Modal Styles */
+
+        /* Lightbox Modal Styles - Modern & Clean */
         .lightbox-modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             z-index: 10000;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
-        
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
         .lightbox-modal.active {
             display: flex;
         }
-        
+
         .lightbox-content {
             position: relative;
             max-width: 90%;
@@ -246,169 +264,223 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .lightbox-image {
             max-width: 100%;
             max-height: 85vh;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
         }
-        
+
         .lightbox-image.fade-out {
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.98);
         }
-        
+
         .lightbox-image.fade-in {
             opacity: 1;
             transform: scale(1);
         }
-        
+
+        /* Close Button - Modern */
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            color: white;
+            top: 24px;
+            right: 24px;
+            font-size: 32px;
+            color: #F5C542;
             cursor: pointer;
             z-index: 10001;
-            transition: all 0.3s ease;
-            background: rgba(139, 10, 26, 0.8);
-            width: 50px;
-            height: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #8B0A1A;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 2px solid #8B0A1A;
+            font-weight: 300;
         }
-        
+
         .lightbox-close:hover {
             background: #F5C542;
             color: #8B0A1A;
-            transform: rotate(90deg);
+            transform: rotate(90deg) scale(1.1);
+            border-color: #F5C542;
+            box-shadow: 0 8px 24px rgba(245, 197, 66, 0.6);
         }
-        
+
+        /* Navigation Arrows - Clean & Professional */
         .lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(139, 10, 26, 0.8);
-            color: white;
-            border: none;
-            font-size: 30px;
+            background: #8B0A1A;
+            color: #F5C542;
+            border: 2px solid #8B0A1A;
+            font-size: 28px;
             cursor: pointer;
-            padding: 20px;
+            padding: 0;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10001;
+            font-weight: 300;
         }
-        
-        .lightbox-nav:hover {
+
+        .lightbox-nav:hover:not(:disabled) {
             background: #F5C542;
             color: #8B0A1A;
-            transform: translateY(-50%) scale(1.1);
+            border-color: #F5C542;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 32px rgba(245, 197, 66, 0.7);
         }
-        
+
+        .lightbox-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: rgba(139, 10, 26, 0.5);
+            border-color: rgba(139, 10, 26, 0.5);
+            color: rgba(245, 197, 66, 0.4);
+        }
+
         .lightbox-prev {
-            left: 30px;
+            left: 40px;
         }
-        
+
         .lightbox-next {
-            right: 30px;
+            right: 40px;
         }
-        
+
+        /* Counter - Modern Badge */
         .lightbox-counter {
             position: absolute;
-            bottom: 20px;
+            bottom: 32px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(139, 10, 26, 0.95);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 25px;
+            background: #8B0A1A;
+            color: #F5C542;
+            padding: 12px 28px;
+            border-radius: 30px;
             font-weight: 600;
             z-index: 10001;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(245, 197, 66, 0.5);
-            font-size: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 2px solid #8B0A1A;
+            font-size: 15px;
+            letter-spacing: 1px;
         }
-        
+
+        /* Title Badge - Clean */
         .lightbox-title {
             position: absolute;
-            top: 20px;
-            left: 30px;
-            background: rgba(139, 10, 26, 0.95);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 10px;
+            top: 24px;
+            left: 24px;
+            background: #8B0A1A;
+            color: #F5C542;
+            padding: 14px 28px;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
             z-index: 10001;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(245, 197, 66, 0.5);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 2px solid #8B0A1A;
+            letter-spacing: 0.5px;
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .lightbox-nav {
-                width: 50px;
-                height: 50px;
+                top: auto;
+                bottom: 90px;
+                transform: none;
+                width: 58px;
+                height: 58px;
                 font-size: 24px;
-                padding: 15px;
+                padding: 0;
+                background: #8B0A1A;
+                color: #F5C542;
+                border: 2px solid #8B0A1A;
             }
-            
+
+            .lightbox-nav:active:not(:disabled) {
+                transform: scale(0.92);
+                background: #F5C542;
+                color: #8B0A1A;
+                border-color: #F5C542;
+            }
+
+            .lightbox-nav:disabled {
+                opacity: 0.3;
+            }
+
             .lightbox-prev {
-                left: 15px;
+                left: 16px;
             }
-            
+
             .lightbox-next {
-                right: 15px;
+                right: 16px;
             }
-            
+
             .lightbox-close {
-                width: 40px;
-                height: 40px;
-                font-size: 30px;
-                top: 15px;
-                right: 15px;
+                width: 48px;
+                height: 48px;
+                font-size: 26px;
+                top: 16px;
+                right: 16px;
+                background: #8B0A1A;
+                color: #F5C542;
+                border: 2px solid #8B0A1A;
             }
-            
+
             .lightbox-title {
-                font-size: 16px;
-                padding: 10px 18px;
-                left: 15px;
-                top: 15px;
+                font-size: 15px;
+                padding: 10px 20px;
+                left: 16px;
+                top: 16px;
+                max-width: calc(100% - 80px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
-            
+
             .lightbox-counter {
-                font-size: 14px;
-                padding: 8px 18px;
-                bottom: 15px;
+                font-size: 13px;
+                padding: 10px 20px;
+                bottom: 20px;
             }
-            
+
             .lightbox-image {
-                max-height: 75vh;
+                max-height: 68vh;
+                max-width: 92%;
+                border-radius: 8px;
             }
-            
+
+            .lightbox-content {
+                max-width: 100%;
+                max-height: 100%;
+                padding: 0 8px;
+            }
+
             .gallery-folder {
                 height: 220px;
             }
-            
+
             .gallery-folder-title {
                 font-size: 20px;
             }
-            
+
             .gallery-folder-count {
                 font-size: 13px;
             }
         }
-        
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -421,30 +493,40 @@
             background-color: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s ease;
         }
-        
+
         .modal.active {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
             animation: zoomIn 0.3s ease;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes zoomIn {
-            from { transform: scale(0.8); }
-            to { transform: scale(1); }
+            from {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
         }
-        
+
         .modal-close {
             position: absolute;
             top: 20px;
@@ -455,12 +537,13 @@
             cursor: pointer;
             z-index: 10000;
         }
-        
+
         .modal-close:hover {
             color: #FFE8A3;
         }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <!-- Top Contact Bar -->
     <div class="bg-maroonDark text-white py-2 hidden lg:block">
@@ -471,7 +554,8 @@
                         <i class="fas fa-phone"></i>
                         <span>08008344244</span>
                     </a>
-                    <a href="mailto:contact@saadhyaglobalschool.com" class="flex items-center space-x-2 hover:text-gold transition">
+                    <a href="mailto:contact@saadhyaglobalschool.com"
+                        class="flex items-center space-x-2 hover:text-gold transition">
                         <i class="fas fa-envelope"></i>
                         <span>contact@saadhyaglobalschool.com</span>
                     </a>
@@ -490,18 +574,20 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center space-x-2 lg:space-x-3 cursor-pointer">
-                    <img src="images/logo.png" alt="Saadhya Global School Logo" class="h-12 w-12 lg:h-14 lg:w-14 object-contain rounded-full border-2 border-white">
+                    <img src="images/logo.png" alt="Saadhya Global School Logo"
+                        class="h-12 w-12 lg:h-14 lg:w-14 object-contain rounded-full border-2 border-white">
                     <div class="text-white">
                         <h1 class="text-lg md:text-xl lg:text-2xl font-bold">Saadhya Global School</h1>
                         <p class="text-xs md:text-sm text-goldLight">Rooted in Care, Rising with Excellence</p>
                     </div>
                 </a>
-                
+
                 <!-- Desktop Navigation -->
                 <ul class="hidden lg:flex space-x-4 xl:space-x-8 items-center">
                     <li><a href="index.html" class="nav-link text-white font-medium hover:text-gold">Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <a href="#" class="nav-link text-white font-medium hover:text-gold" id="aboutDropdown">About Us
+                            <i class="fas fa-chevron-down text-xs ml-1"></i></a>
                         <div class="dropdown-content" id="aboutDropdownContent">
                             <a href="vision-mission.html">Vision & Mission</a>
                             <a href="infrastructure.html">Infrastructure</a>
@@ -514,19 +600,21 @@
                     <li><a href="gallery.html" class="nav-link text-white font-medium hover:text-gold">Gallery</a></li>
                     <li><a href="faq.html" class="nav-link text-white font-medium hover:text-gold">FAQ</a></li>
                     <li><a href="careers.html" class="nav-link text-white font-medium hover:text-gold">Careers</a></li>
-                    <li><a href="admission.html" class="nav-link text-white font-medium hover:text-gold">Admission</a></li>
+                    <li><a href="admission.html" class="nav-link text-white font-medium hover:text-gold">Admission</a>
+                    </li>
                     <li><a href="contact.html" class="nav-link text-white font-medium hover:text-gold">Contact</a></li>
                 </ul>
-                
+
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="lg:hidden text-white text-xl md:text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </nav>
-        
+
         <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
+        <div id="mobile-menu"
+            class="mobile-menu fixed top-0 right-0 h-full w-64 md:w-80 bg-maroonDark shadow-2xl lg:hidden z-50">
             <div class="p-6">
                 <button id="close-menu-btn" class="text-white text-2xl mb-8 float-right">
                     <i class="fas fa-times"></i>
@@ -534,24 +622,42 @@
                 <ul class="space-y-6 mt-12">
                     <li><a href="index.html" class="text-white text-lg block hover:text-gold transition">Home</a></li>
                     <li>
-                        <a href="#" class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between" id="mobile-about-toggle">
+                        <a href="#"
+                            class="text-white text-lg block hover:text-gold transition w-full text-left flex items-center justify-between"
+                            id="mobile-about-toggle">
                             <span>About Us</span>
                             <i class="fas fa-chevron-down transition-transform duration-300" id="mobile-about-icon"></i>
                         </a>
                         <ul id="mobile-about-submenu" class="mobile-submenu pl-4 mt-2 space-y-3">
-                            <li><a href="vision-mission.html" class="text-goldLight text-base block hover:text-gold transition">Vision & Mission</a></li>
-                            <li><a href="infrastructure.html" class="text-goldLight text-base block hover:text-gold transition">Infrastructure</a></li>
-                            <li><a href="safe-environment.html" class="text-goldLight text-base block hover:text-gold transition">Safe Environment</a></li>
-                            <li><a href="academic-excellence.html" class="text-goldLight text-base block hover:text-gold transition">Academic Excellence</a></li>
-                            <li><a href="holistic-development.html" class="text-goldLight text-base block hover:text-gold transition">After School Activities</a></li>
-                            <li><a href="leadership.html" class="text-goldLight text-base block hover:text-gold transition">Leadership</a></li>
+                            <li><a href="vision-mission.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">Vision &
+                                    Mission</a></li>
+                            <li><a href="infrastructure.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">Infrastructure</a>
+                            </li>
+                            <li><a href="safe-environment.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">Safe
+                                    Environment</a></li>
+                            <li><a href="academic-excellence.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">Academic
+                                    Excellence</a></li>
+                            <li><a href="holistic-development.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">After School
+                                    Activities</a></li>
+                            <li><a href="leadership.html"
+                                    class="text-goldLight text-base block hover:text-gold transition">Leadership</a>
+                            </li>
                         </ul>
                     </li>
-                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a></li>
+                    <li><a href="gallery.html" class="text-white text-lg block hover:text-gold transition">Gallery</a>
+                    </li>
                     <li><a href="faq.html" class="text-white text-lg block hover:text-gold transition">FAQ</a></li>
-                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a></li>
-                    <li><a href="admission.html" class="text-white text-lg block hover:text-gold transition">Admission</a></li>
-                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a></li>
+                    <li><a href="careers.html" class="text-white text-lg block hover:text-gold transition">Careers</a>
+                    </li>
+                    <li><a href="admission.html"
+                            class="text-white text-lg block hover:text-gold transition">Admission</a></li>
+                    <li><a href="contact.html" class="text-white text-lg block hover:text-gold transition">Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -572,63 +678,69 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-maroon mb-4">School Life in Pictures</h2>
                 <p class="text-gray-600 text-lg">Explore the vibrant life at Saadhya Global School</p>
             </div>
-            
+
             <!-- Gallery Folders Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
                 <!-- Annual Day Folder -->
                 <div class="gallery-folder" onclick="openGallery('Annual day', 'Annual Day', 5)">
-                    <img src="gallery/Annual day/annual-day-6.jpeg" alt="Annual Day" class="gallery-folder-thumbnail">
+                    <img src="gallery/Annual day/compressed-annual-day-6.jpeg" alt="Annual Day"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Annual Day</h3>
                         <p class="gallery-folder-count">11 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Assembly Folder -->
                 <div class="gallery-folder" onclick="openGallery('assembly', 'Assembly', 3)">
-                    <img src="gallery/assembly/assembly-4.jpeg" alt="Assembly" class="gallery-folder-thumbnail">
+                    <img src="gallery/assembly/compressed-assembly-4.jpeg" alt="Assembly"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Assembly</h3>
                         <p class="gallery-folder-count">6 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Celebrations Folder -->
                 <div class="gallery-folder" onclick="openGallery('celebrations', 'Celebrations', 5)">
-                    <img src="gallery/celebrations/celebrations-6.jpeg" alt="Celebrations" class="gallery-folder-thumbnail">
+                    <img src="gallery/celebrations/compressed-celebrations-6.jpeg" alt="Celebrations"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Celebrations</h3>
                         <p class="gallery-folder-count">12 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Class Activity Folder -->
                 <div class="gallery-folder" onclick="openGallery('class activity', 'Class Activity', 5)">
-                    <img src="gallery/class activity/class-activity-6.jpeg" alt="Class Activity" class="gallery-folder-thumbnail">
+                    <img src="gallery/class activity/compressed-class-activity-6.jpeg" alt="Class Activity"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Class Activity</h3>
                         <p class="gallery-folder-count">13 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Field Trip Folder -->
                 <div class="gallery-folder" onclick="openGallery('field trip', 'Field Trip', 4)">
-                    <img src="gallery/field trip/field-trip-5.jpeg" alt="Field Trip" class="gallery-folder-thumbnail">
+                    <img src="gallery/field trip/compressed-field-trip-5.jpeg" alt="Field Trip"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Field Trip</h3>
                         <p class="gallery-folder-count">10 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Kungfu and Skating Folder -->
                 <div class="gallery-folder" onclick="openGallery('Kungfu and Skating', 'Kungfu & Skating', 6)">
-                    <img src="gallery/Kungfu and Skating/kungfu-and-skating-7.jpeg" alt="Kungfu & Skating" class="gallery-folder-thumbnail">
+                    <img src="gallery/Kungfu and Skating/compressed-kungfu-and-skating-7.jpeg" alt="Kungfu & Skating"
+                        class="gallery-folder-thumbnail">
                     <div class="gallery-folder-content">
                         <h3 class="gallery-folder-title">Kungfu & Skating</h3>
                         <p class="gallery-folder-count">13 Photos</p>
                     </div>
                 </div>
-                
+
                 <!-- Sports Day Folder -->
                 <div class="gallery-folder" onclick="openGallery('Sports day', 'Sports Day', 5)">
                     <img src="gallery/Sports day/sports-day-6.jpeg" alt="Sports Day" class="gallery-folder-thumbnail">
@@ -665,10 +777,12 @@
                 Schedule a visit to see our facilities and meet our community in person.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="admission.html" class="bg-maroon hover:bg-maroonDark text-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                <a href="admission.html"
+                    class="bg-maroon hover:bg-maroonDark text-white font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
                     Apply for Admission
                 </a>
-                <a href="contact.html" class="bg-white hover:bg-gray-100 text-maroon border-2 border-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
+                <a href="contact.html"
+                    class="bg-white hover:bg-gray-100 text-maroon border-2 border-maroon font-semibold px-10 py-4 rounded-lg text-lg transition duration-300 inline-block shadow-lg">
                     Schedule a Visit
                 </a>
             </div>
@@ -682,14 +796,15 @@
                 <!-- About with Logo -->
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="images/logo.png" alt="Saadhya Global School Logo" class="h-12 w-12 mr-3 rounded-full border-2 border-white">
+                        <img src="images/logo.png" alt="Saadhya Global School Logo"
+                            class="h-12 w-12 mr-3 rounded-full border-2 border-white">
                         <h3 class="text-xl font-bold text-gold">Saadhya Global School</h3>
                     </div>
                     <p class="text-gray-400 leading-relaxed">
                         Committed to excellence in education, nurturing young minds with values and innovation.
                     </p>
                 </div>
-                
+
                 <!-- Quick Links -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
@@ -702,35 +817,39 @@
                         <li><a href="admission.html" class="text-gray-400 hover:text-gold transition">Admission</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Contact Info -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4 text-gold">Contact Us</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2 text-gold"></i> Plot No: 844, Mathrusree Nagar, Miyapur<br><span class="ml-6">Telangana 500049</span></li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-gold"></i> Plot No: 844, Mathrusree Nagar,
+                            Miyapur<br><span class="ml-6">Telangana 500049</span></li>
                         <li><i class="fas fa-phone mr-2 text-gold"></i> 08008344244</li>
                         <li><i class="fas fa-envelope mr-2 text-gold"></i> contact@saadhyaglobalschool.com</li>
                         <li><i class="fas fa-clock mr-2 text-gold"></i> Mon-Sat: 9am - 6pm</li>
                     </ul>
                 </div>
-                
+
                 <!-- Social Media -->
                 <div>
                     <h4 class="text-lg font-semibold mb-4 text-gold">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/share/19hqrSmmzH/" target="_blank" class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                        <a href="https://www.facebook.com/share/19hqrSmmzH/" target="_blank"
+                            class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://www.instagram.com/saadhyaglobal.school" target="_blank" class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                        <a href="https://www.instagram.com/saadhyaglobal.school" target="_blank"
+                            class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.youtube.com/@saadhyaglobal/featured" target="_blank" class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
+                        <a href="https://www.youtube.com/@saadhyaglobal/featured" target="_blank"
+                            class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] aspect-square flex-shrink-0 bg-maroon hover:bg-gold rounded-full flex items-center justify-center transition">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>&copy; 2026 Saadhya Global School. All rights reserved.</p>
             </div>
@@ -742,81 +861,81 @@
         // Gallery data with all folders and their images
         const galleryData = {
             'Annual day': [
-                'gallery/Annual day/annual-day-1.jpeg',
-                'gallery/Annual day/annual-day-2.jpg',
-                'gallery/Annual day/annual-day-3.jpg',
-                'gallery/Annual day/annual-day-4.jpg',
-                'gallery/Annual day/annual-day-5.jpeg',
-                'gallery/Annual day/annual-day-6.jpeg',
-                'gallery/Annual day/annual-day-7.jpeg',
-                'gallery/Annual day/annual-day-8.jpeg',
-                'gallery/Annual day/annual-day-9.jpeg',
-                'gallery/Annual day/annual-day-10.jpeg',
-                'gallery/Annual day/annual-day-11.jpeg'
+                'gallery/Annual day/compressed-annual-day-1.jpeg',
+                'gallery/Annual day/compressed-annual-day-2.jpg',
+                'gallery/Annual day/compressed-annual-day-3.jpg',
+                'gallery/Annual day/compressed-annual-day-4.jpg',
+                'gallery/Annual day/compressed-annual-day-5.jpeg',
+                'gallery/Annual day/compressed-annual-day-6.jpeg',
+                'gallery/Annual day/compressed-annual-day-7.jpeg',
+                'gallery/Annual day/compressed-annual-day-8.jpeg',
+                'gallery/Annual day/compressed-annual-day-9.jpeg',
+                'gallery/Annual day/compressed-annual-day-10.jpeg',
+                'gallery/Annual day/compressed-annual-day-11.jpeg'
             ],
             'assembly': [
-                'gallery/assembly/assembly-1.jpeg',
-                'gallery/assembly/assembly-2.jpeg',
-                'gallery/assembly/assembly-4.jpeg',
-                'gallery/assembly/assembly-5.jpeg',
-                'gallery/assembly/assembly-6.jpeg',
-                'gallery/assembly/assembly-7.jpeg'
+                'gallery/assembly/compressed-assembly-1.jpeg',
+                'gallery/assembly/compressed-assembly-2.jpeg',
+                'gallery/assembly/compressed-assembly-4.jpeg',
+                'gallery/assembly/compressed-assembly-5.jpeg',
+                'gallery/assembly/compressed-assembly-6.jpeg',
+                'gallery/assembly/compressed-assembly-7.jpeg'
             ],
             'celebrations': [
-                'gallery/celebrations/celebrations-1.jpg',
-                'gallery/celebrations/celebrations-2.JPG',
-                'gallery/celebrations/celebrations-3.jpg',
-                'gallery/celebrations/celebrations-4.jpg',
-                'gallery/celebrations/celebrations-5.jpeg',
-                'gallery/celebrations/celebrations-6.jpeg',
-                'gallery/celebrations/celebrations-7.jpeg',
-                'gallery/celebrations/celebrations-8.jpg',
-                'gallery/celebrations/celebrations-9.jpg',
-                'gallery/celebrations/celebrations-10.jpeg',
-                'gallery/celebrations/celebrations-11.jpeg',
-                'gallery/celebrations/celebrations-12.jpeg'
+                'gallery/celebrations/compressed-celebrations-1.jpg',
+                'gallery/celebrations/compressed-celebrations-2.JPG',
+                'gallery/celebrations/compressed-celebrations-3.jpg',
+                'gallery/celebrations/compressed-celebrations-4.jpg',
+                'gallery/celebrations/compressed-celebrations-5.jpeg',
+                'gallery/celebrations/compressed-celebrations-6.jpeg',
+                'gallery/celebrations/compressed-celebrations-7.jpeg',
+                'gallery/celebrations/compressed-celebrations-8.jpg',
+                'gallery/celebrations/compressed-celebrations-9.jpg',
+                'gallery/celebrations/compressed-celebrations-10.jpeg',
+                'gallery/celebrations/compressed-celebrations-11.jpeg',
+                'gallery/celebrations/compressed-celebrations-12.jpeg'
             ],
             'class activity': [
-                'gallery/class activity/class-activity-1.jpeg',
-                'gallery/class activity/class-activity-2.jpeg',
-                'gallery/class activity/class-activity-3.jpeg',
-                'gallery/class activity/class-activity-4.jpeg',
-                'gallery/class activity/class-activity-5.jpeg',
-                'gallery/class activity/class-activity-6.jpeg',
-                'gallery/class activity/class-activity-7.jpeg',
-                'gallery/class activity/class-activity-8.jpeg',
-                'gallery/class activity/class-activity-9.jpeg',
-                'gallery/class activity/class-activity-10.jpeg',
-                'gallery/class activity/class-activity-11.jpeg',
-                'gallery/class activity/class-activity-12.jpeg',
-                'gallery/class activity/class-activity-13.jpeg'
+                'gallery/class activity/compressed-class-activity-1.jpeg',
+                'gallery/class activity/compressed-class-activity-2.jpeg',
+                'gallery/class activity/compressed-class-activity-3.jpeg',
+                'gallery/class activity/compressed-class-activity-4.jpeg',
+                'gallery/class activity/compressed-class-activity-5.jpeg',
+                'gallery/class activity/compressed-class-activity-6.jpeg',
+                'gallery/class activity/compressed-class-activity-7.jpeg',
+                'gallery/class activity/compressed-class-activity-8.jpeg',
+                'gallery/class activity/compressed-class-activity-9.jpeg',
+                'gallery/class activity/compressed-class-activity-10.jpeg',
+                'gallery/class activity/compressed-class-activity-11.jpeg',
+                'gallery/class activity/compressed-class-activity-12.jpeg',
+                'gallery/class activity/compressed-class-activity-13.jpeg'
             ],
             'field trip': [
-                'gallery/field trip/field-trip-1.jpeg',
-                'gallery/field trip/field-trip-2.jpeg',
-                'gallery/field trip/field-trip-3.jpeg',
-                'gallery/field trip/field-trip-4.jpeg',
-                'gallery/field trip/field-trip-5.jpeg',
-                'gallery/field trip/field-trip-6.jpeg',
-                'gallery/field trip/field-trip-7.jpeg',
-                'gallery/field trip/field-trip-8.jpeg',
-                'gallery/field trip/field-trip-9.jpeg',
-                'gallery/field trip/field-trip-10.jpeg'
+                'gallery/field trip/compressed-field-trip-1.jpeg',
+                'gallery/field trip/compressed-field-trip-2.jpeg',
+                'gallery/field trip/compressed-field-trip-3.jpeg',
+                'gallery/field trip/compressed-field-trip-4.jpeg',
+                'gallery/field trip/compressed-field-trip-5.jpeg',
+                'gallery/field trip/compressed-field-trip-6.jpeg',
+                'gallery/field trip/compressed-field-trip-7.jpeg',
+                'gallery/field trip/compressed-field-trip-8.jpeg',
+                'gallery/field trip/compressed-field-trip-9.jpeg',
+                'gallery/field trip/compressed-field-trip-10.jpeg'
             ],
             'Kungfu and Skating': [
-                'gallery/Kungfu and Skating/kungfu-and-skating-1.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-2.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-3.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-4.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-5.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-7.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-6.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-8.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-9.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-10.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-11.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-12.jpeg',
-                'gallery/Kungfu and Skating/kungfu-and-skating-13.jpeg'
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-1.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-2.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-3.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-4.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-5.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-7.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-6.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-8.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-9.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-10.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-11.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-12.jpeg',
+                'gallery/Kungfu and Skating/compressed-kungfu-and-skating-13.jpeg'
             ],
             'Sports day': [
                 'gallery/Sports day/sports-day-1.jpeg',
@@ -841,11 +960,11 @@
         function openGallery(folderName, displayTitle, startIndex = 0) {
             currentFolder = folderName;
             currentIndex = startIndex;
-            
+
             const modal = document.getElementById('lightboxModal');
             const title = document.getElementById('lightboxTitle');
             const img = document.getElementById('lightboxImage');
-            
+
             if (modal && title && galleryData[folderName] && galleryData[folderName].length > 0) {
                 // Set image immediately before showing modal to prevent flash
                 if (img) {
@@ -853,7 +972,7 @@
                     img.classList.remove('fade-out');
                     img.classList.add('fade-in');
                 }
-                
+
                 title.textContent = displayTitle;
                 updateLightboxCounter();
                 updateNavigationButtons();
@@ -917,15 +1036,15 @@
             if (img && counter) {
                 // Add fade-out effect
                 img.classList.add('fade-out');
-                
+
                 // Wait for fade-out, then change image
                 setTimeout(() => {
                     img.src = images[currentIndex];
                     counter.textContent = `${currentIndex + 1} / ${images.length}`;
-                    
+
                     // Remove existing onload handler to prevent issues
                     img.onload = null;
-                    
+
                     // Trigger fade-in immediately
                     setTimeout(() => {
                         img.classList.remove('fade-out');
@@ -933,7 +1052,7 @@
                     }, 50);
                 }, 150);
             }
-            
+
             updateNavigationButtons();
         }
 
@@ -963,20 +1082,20 @@
         }
 
         // Initialize event listeners when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('lightboxModal');
-            
+
             if (modal) {
                 // Close when clicking on background
-                modal.addEventListener('click', function(e) {
+                modal.addEventListener('click', function (e) {
                     if (e.target === this) {
                         closeLightbox();
                     }
                 });
             }
-            
+
             // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 const modal = document.getElementById('lightboxModal');
                 if (modal && modal.classList.contains('active')) {
                     if (e.key === 'Escape') {
@@ -988,7 +1107,38 @@
                     }
                 }
             });
+
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (modal) {
+                modal.addEventListener('touchstart', function (e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                modal.addEventListener('touchend', function (e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+            }
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum swipe distance
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swiped left - go to next image
+                        navigateImage(1);
+                    } else {
+                        // Swiped right - go to previous image
+                        navigateImage(-1);
+                    }
+                }
+            }
         });
     </script>
 </body>
+
 </html>
