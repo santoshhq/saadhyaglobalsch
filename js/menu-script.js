@@ -1,4 +1,3 @@
-// Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     // Highlight active page in navigation (desktop and mobile)
     let currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -6,22 +5,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentPage === '' || currentPage === '/') {
         currentPage = 'index.html';
     }
-    
+
     // Helper function to check if link matches current page
     function isActivePage(linkHref) {
         if (!linkHref || linkHref === '#') return false;
-        
+
         // Extract filename from link (handle both relative and absolute URLs)
         let linkPage = linkHref.split('/').pop().split('?')[0].split('#')[0];
-        
+
         // If link is just '/' or empty, it's the index
         if (linkPage === '' || linkPage === '/') {
             linkPage = 'index.html';
         }
-        
+
         return linkPage.toLowerCase() === currentPage.toLowerCase();
     }
-    
+
     // Desktop navigation - nav-links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
-    
+
     // Desktop navigation - Admission button (select by href but exclude footer links)
     const admissionLinks = document.querySelectorAll('header a[href="admission.html"], header a[href*="admission.html"], #mobile-menu a[href="admission.html"]');
     admissionLinks.forEach(link => {
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.style.fontWeight = '600';
         }
     });
-    
+
     // Desktop navigation - Dropdown items (About Us submenu)
     const dropdownLinks = document.querySelectorAll('.dropdown-content a');
     dropdownLinks.forEach(link => {
@@ -49,12 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
-    
+
     // Mobile navigation
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const closeMenuBtn = document.getElementById('close-menu-btn');
-    
+
     if (mobileMenu) {
         const mobileLinks = mobileMenu.querySelectorAll('a[href]');
         mobileLinks.forEach(link => {
@@ -85,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             submenu.classList.toggle('active');
-            
+
             if (icon) {
                 if (submenu.classList.contains('active')) {
                     icon.style.transform = 'rotate(180deg)';
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', () => {
                 // Don't close menu if clicking the About Us toggle
                 if (link.getAttribute('href') === '#') return;
-                
+
                 mobileMenu.classList.remove('active');
             });
         });
@@ -146,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
 });
 
 // Hero carousel functionality
