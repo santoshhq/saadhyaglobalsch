@@ -1,24 +1,48 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Highlight active page in navigation (desktop and mobile)
-    let currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    // If pathname is just '/' (root), treat it as index.html
-    if (currentPage === '' || currentPage === '/') {
+    // Get current page path and normalize it
+    let pathname = window.location.pathname;
+    let currentPage = '';
+    
+    // Extract the page name from pathname
+    if (pathname === '/' || pathname === '' || pathname === '/index' || pathname === '/index.html') {
         currentPage = 'index.html';
+    } else {
+        // Get the last part of the path
+        currentPage = pathname.split('/').pop();
+        // If it doesn't have .html, add it (for Cloudflare Pages)
+        if (currentPage && !currentPage.includes('.')) {
+            currentPage = currentPage + '.html';
+        }
+        // If still empty, default to index
+        if (!currentPage || currentPage === '.html') {
+            currentPage = 'index.html';
+        }
     }
 
     // Helper function to check if link matches current page
     function isActivePage(linkHref) {
         if (!linkHref || linkHref === '#') return false;
 
-        // Extract filename from link (handle both relative and absolute URLs)
+        // Extract filename from link
         let linkPage = linkHref.split('/').pop().split('?')[0].split('#')[0];
 
-        // If link is just '/' or empty, it's the index
-        if (linkPage === '' || linkPage === '/') {
+        // Handle empty or root links
+        if (!linkPage || linkPage === '' || linkPage === '/') {
             linkPage = 'index.html';
         }
 
-        return linkPage.toLowerCase() === currentPage.toLowerCase();
+        // Normalize both pages for comparison
+        let normalizedCurrent = currentPage.toLowerCase().trim();
+        let normalizedLink = linkPage.toLowerCase().trim();
+        
+        // Also check without .html extension (for Cloudflare)
+        let currentWithoutExt = normalizedCurrent.replace('.html', '');
+        let linkWithoutExt = normalizedLink.replace('.html', '');
+        
+        return normalizedLink === normalizedCurrent || 
+               linkWithoutExt === currentWithoutExt ||
+               normalizedLink === currentWithoutExt ||
+               linkWithoutExt === normalizedCurrent;
     }
 
     // Desktop navigation - nav-links
@@ -26,11 +50,17 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks.forEach(link => {
         if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
+            // Force inline styles to ensure visibility
+            link.style.backgroundColor = '#F5C542';
+            link.style.color = '#8B0A1A';
+            link.style.padding = '8px 16px';
+            link.style.borderRadius = '6px';
+            link.style.fontWeight = '600';
         }
     });
 
     // Desktop navigation - Admission button (select by href but exclude footer links)
-    const admissionLinks = document.querySelectorAll('header a[href="admission.html"], header a[href*="admission.html"], #mobile-menu a[href="admission.html"]');
+    const admissionLinks = document.querySelectorAll('header a[href="admission.html"], header a[href*="admission.html"], header a[href="admission"], #mobile-menu a[href="admission.html"], #mobile-menu a[href="admission"]');
     admissionLinks.forEach(link => {
         if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
@@ -46,6 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
     dropdownLinks.forEach(link => {
         if (isActivePage(link.getAttribute('href'))) {
             link.classList.add('active');
+            // Force inline styles
+            link.style.backgroundColor = '#F5C542';
+            link.style.color = '#8B0A1A';
+            link.style.fontWeight = '600';
         }
     });
 
@@ -59,6 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileLinks.forEach(link => {
             if (isActivePage(link.getAttribute('href'))) {
                 link.classList.add('active');
+                // Force inline styles for mobile menu
+                link.style.backgroundColor = '#F5C542';
+                link.style.color = '#8B0A1A';
+                link.style.padding = '8px 12px';
+                link.style.borderRadius = '6px';
+                link.style.fontWeight = '600';
             }
         });
     }
