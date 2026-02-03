@@ -4,6 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+    
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="96x96" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon-96x96.png">
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.svg">
@@ -27,7 +39,8 @@
     <meta property="og:image" content="https://saadhyaglobalschool.com/images/logo.png">
     <title>Safe Environment - Saadhya Global School</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <script>
         tailwind.config = {
             theme: {
@@ -46,8 +59,27 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-
+        /* Prevent flash of unstyled content */
+        html {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Skeleton loading for images */
+        img {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+        }
+        
+        img[loading="lazy"] {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+        
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
@@ -56,6 +88,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
         }
 
         h1,
@@ -386,7 +419,7 @@
                         <div class="order-1 md:order-2">
                             <div class="bg-cream p-4 rounded-2xl shadow-xl" style="height: 400px;">
                                 <img src="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/AboutUs_all_images/cctv_image.jpg"
-                                    alt="CCTV Surveillance System" class="rounded-xl w-full h-full object-cover">
+                                    alt="CCTV Surveillance System" class="rounded-xl w-full h-full object-cover" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -398,7 +431,7 @@
                         <div>
                             <div class="bg-cream p-4 rounded-2xl shadow-xl" style="height: 400px;">
                                 <img src="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/AboutUs_all_images/trained_security_staff.jpg"
-                                    alt="Security Personnel" class="rounded-xl w-full h-full object-cover">
+                                    alt="Security Personnel" class="rounded-xl w-full h-full object-cover" loading="lazy">
                             </div>
                         </div>
                         <div>
@@ -478,7 +511,7 @@
                             <div class="bg-cream p-4 rounded-2xl shadow-xl" style="height: 400px;">
                                 <img src="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/AboutUs_all_images/fire_safety11.jpg"
                                     alt="Fire Safety Equipment - Fire extinguishers and safety signage"
-                                    class="rounded-xl w-full h-full object-cover">
+                                    class="rounded-xl w-full h-full object-cover" loading="lazy">
                             </div>
                         </div>
                     </div>
