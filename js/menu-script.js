@@ -319,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!popupShown) {
             setTimeout(() => {
+                popup.style.display = 'flex';
                 popup.classList.remove('hidden');
                 sessionStorage.setItem('admissionPopupShown', 'true');
             }, 10000);
@@ -328,7 +329,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Close popup
     if (closePopupBtn) {
         closePopupBtn.addEventListener('click', () => {
-            if (popup) popup.classList.add('hidden');
+            if (popup) {
+                popup.style.display = 'none';
+                popup.classList.add('hidden');
+            }
         });
     }
 
@@ -336,6 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (popup) {
         popup.addEventListener('click', (e) => {
             if (e.target === popup) {
+                popup.style.display = 'none';
                 popup.classList.add('hidden');
             }
         });
@@ -450,6 +455,7 @@ function showIndexSuccessPopup() {
 
     if (successPopup) {
         // Show popup
+        successPopup.style.display = 'flex';
         successPopup.classList.remove('hidden');
         successPopup.classList.add('flex');
 
@@ -479,6 +485,7 @@ function showIndexSuccessPopup() {
 function closeIndexSuccessPopup() {
     const successPopup = document.getElementById('successPopup');
     if (successPopup) {
+        successPopup.style.display = 'none';
         successPopup.classList.add('hidden');
         successPopup.classList.remove('flex');
     }
@@ -519,8 +526,7 @@ function showCareerSuccessPopup() {
 
 function closeCareerSuccessPopup() {
     const successPopup = document.getElementById('careerSuccessPopup');
-    if (successPopup) {
-        successPopup.classList.add('hidden');
+    if (successPopup) {        successPopup.style.display = 'none';        successPopup.classList.add('hidden');
         successPopup.classList.remove('flex');
     }
 }
