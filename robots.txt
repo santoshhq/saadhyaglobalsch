@@ -1,0 +1,13 @@
+# Robots.txt for Saadhya Global School
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://saadhyaglobalschool.com/sitemap.xml
+
+# Disallow crawling of any admin or private directories (if added in future)
+# User-agent: *
+# Disallow: /admin/
+# Disallow: /private/
