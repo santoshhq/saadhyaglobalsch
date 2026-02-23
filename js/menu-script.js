@@ -321,11 +321,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Admission popup functionality
-document.addEventListener('DOMContentLoaded', function () {
+// Use both DOMContentLoaded and window.load for better compatibility across hosting platforms
+function initAdmissionPopup() {
     const popup = document.getElementById('admissionPopup');
     const closePopupBtn = document.getElementById('closePopup');
     const admissionForm = document.getElementById('admissionForm');
     const admissionYearText = document.getElementById('admissionYearText');
+
+    // Exit if popup element doesn't exist
+    if (!popup) {
+        console.warn('Admission popup element not found');
+        return;
+    }
 
     // Check if current month is in admission period (December, January-June)
     const currentDate = new Date();
@@ -354,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Show popup after 10 seconds only during admission period and if not shown in this session
-    if (isAdmissionPeriod && popup) {
+    if (isAdmissionPeriod) {
         const popupShown = sessionStorage.getItem('admissionPopupShown');
 
         if (!popupShown) {
@@ -365,7 +372,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 10000);
         }
     }
+}
 
+// Try with DOMContentLoaded first
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdmissionPopup);
+} else {
+    // DOM already loaded, run immediately
+    initAdmissionPopup();
+}
+
+// Close popup button event
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('admissionPopup');
+    const closePopupBtn = document.getElementById('closePopup');
+    
     // Close popup
     if (closePopupBtn) {
         closePopupBtn.addEventListener('click', () => {
@@ -421,8 +442,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify(payload)
             })
                 .then(() => {
-                    // Close the admission popup
-                    if (popup) popup.classList.add('hidden');
+                    // Close the admission popup completely
+                    if (popup) {
+                        popup.style.display = 'none';
+                        popup.classList.add('hidden');
+                    }
 
                     // Show success popup (index.html uses 'successPopup' ID)
                     showIndexSuccessPopup();

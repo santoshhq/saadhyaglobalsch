@@ -16,10 +16,15 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
     
-    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.ico">
+    <!-- Favicon - Multiple sizes for better compatibility -->
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon-96x96.png">
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/santoshhq/saadhyaglobalsch-images@master/favicon/favicon.ico">
 
     <!-- Primary SEO Meta Tags -->
     <title>Safe & Secure School - Saadhya Global School Safety Measures</title>
@@ -59,27 +64,6 @@
         }
     </script>
     <style>
-        /* Prevent flash of unstyled content */
-        html {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* Skeleton loading for images */
-        img {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-        }
-        
-        img[loading="lazy"] {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        img[loading="lazy"].loaded {
-            opacity: 1;
-        }
-        
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
@@ -88,7 +72,18 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
+            background-color: #f9fafb;
+        }
+
+        /* Smooth image loading */
+        img {
+            opacity: 1;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        /* Image container background to prevent white flash */
+        .bg-cream {
+            background-color: #FFF6DA;
         }
 
         h1,
